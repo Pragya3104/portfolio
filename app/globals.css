@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #06000f;
+  --surface: #0d0520;
+  --surface2: #130a28;
+  --border: rgba(168,85,247,0.15);
+  --border-bright: rgba(168,85,247,0.4);
+  --text: #f0e6ff;
+  --muted: #7c5fa8;
+  --accent: #bf5fff;
+  --accent2: #00d4ff;
+  --warm: #ff6b9d;
+  --glow: rgba(168,85,247,0.12);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Mono', 'Courier New', monospace;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* CRT scanlines */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 9997;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.07) 2px,
+    rgba(0,0,0,0.07) 4px
+  );
+}
+
+/* Vignette */
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: 9996;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.6) 100%);
+}
+
+::selection { background: var(--accent); color: var(--bg); }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 0; }
+
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+@keyframes glow-pulse {
+  0%,100%{text-shadow:0 0 8px var(--accent), 0 0 20px var(--accent)}
+  50%{text-shadow:0 0 4px var(--accent), 0 0 8px var(--accent)}
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
