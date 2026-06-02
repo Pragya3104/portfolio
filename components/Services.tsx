@@ -30,11 +30,6 @@ const services = [
   },
 ];
 
-const experience = [
-  { role: "AI & Data Science Intern", company: "Infosys Springboard", period: "Oct–Dec 2025", current: true },
-  { role: "AI & Cloud Intern", company: "Edunet Foundation / AICTE & IBM", period: "Jul–Aug 2025", current: false },
-  { role: "SDE Intern", company: "Xyronix Labs", period: "Jan–Jul 2025", current: false },
-];
 
 export default function Services() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -57,11 +52,7 @@ export default function Services() {
           { y: 0, opacity: 1, rotation: 0, scale: 1, stagger: 0.14, duration: 0.9, ease: "back.out(1.4)" },
           "-=0.2"
         )
-        .fromTo(".experience-row",
-          { x: 60, opacity: 0 },
-          { x: 0, opacity: 1, stagger: 0.1, duration: 0.7 },
-          "-=0.4"
-        );
+;
       }, sectionRef);
       return () => ctx.revert();
     }, 100);
@@ -69,7 +60,14 @@ export default function Services() {
   }, []);
 
   return (
-    <section id="services" ref={sectionRef} style={{ padding: "100px 40px" }}>
+    <section id="services" ref={sectionRef} style={{ padding: "100px 40px", position: "relative", overflow: "hidden" }}>
+      <div aria-hidden="true" style={{
+        position: "absolute", top: -10, right: -15,
+        fontSize: "clamp(100px, 16vw, 200px)",
+        fontFamily: "'Syne', sans-serif", fontWeight: 800,
+        color: "rgba(255,255,255,0.018)", letterSpacing: "-0.04em",
+        userSelect: "none", pointerEvents: "none", lineHeight: 1, whiteSpace: "nowrap",
+      }}>SERVICES</div>
       <div className="services-header" style={{ marginBottom: 56, display: "flex", alignItems: "center", gap: 16 }}>
         <span style={{ color: "var(--accent)", fontSize: 11, opacity: 0.6 }}>$</span>
         <span style={{ color: "var(--muted)", fontSize: 11 }}>ps aux |</span>
@@ -84,17 +82,6 @@ export default function Services() {
         {services.map(s => <ServiceCard key={s.name} service={s} />)}
       </div>
 
-      {/* Experience timeline */}
-      <div className="service-block" style={{
-        border: "1px solid var(--border)",
-        borderTop: "2px solid var(--accent2)",
-        padding: "32px 40px",
-        background: "var(--surface)",
-        marginTop: 2,
-      }}>
-        <div style={{ fontSize: 10, color: "var(--accent2)", marginBottom: 28, letterSpacing: "0.1em" }}>$ cat ./experience/timeline.log</div>
-        {experience.map((e, i) => <ExperienceRow key={i} {...e} last={i === experience.length - 1} />)}
-      </div>
 
       <style>{`
         @media (max-width: 900px) {
@@ -133,13 +120,18 @@ function ServiceCard({ service: s }: { service: typeof services[0] }) {
 
   return (
     <div ref={cardRef} className="service-card" style={{
-      border: `1px solid ${hovered ? s.accent : "var(--border)"}`,
       borderTop: `2px solid ${s.accent}`,
+      borderRight: `1px solid ${hovered ? s.accent : "var(--border)"}`,
+      borderBottom: `1px solid ${hovered ? s.accent : "var(--border)"}`,
+      borderLeft: `1px solid ${hovered ? s.accent : "var(--border)"}`,
       padding: "32px 28px",
-      background: hovered ? "var(--surface2)" : "var(--surface)",
+      background: hovered ? "rgba(22, 10, 56, 0.75)" : "rgba(11, 4, 33, 0.55)",
+      backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)",
       transition: "border-color 0.25s, background 0.25s, box-shadow 0.25s",
       position: "relative", overflow: "hidden",
-      boxShadow: hovered ? `0 0 28px ${s.glow}` : "none",
+      boxShadow: hovered
+        ? `0 12px 48px rgba(0,0,0,0.55), 0 0 28px ${s.glow}, inset 0 1px 0 rgba(255,255,255,0.09)`
+        : "0 4px 28px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.05)",
       transformStyle: "preserve-3d",
     }}
       onMouseEnter={() => setHovered(true)}
@@ -173,43 +165,3 @@ function ServiceCard({ service: s }: { service: typeof services[0] }) {
   );
 }
 
-function ExperienceRow({ role, company, period, current, last }: typeof experience[0] & { last: boolean }) {
-  const [hovered, setHovered] = useState(false);
-  return (
-    <div
-      className="experience-row"
-      style={{
-        display: "grid", gridTemplateColumns: "20px 1fr 1fr auto", gap: 20,
-        padding: "18px 0",
-        borderBottom: last ? "none" : "1px solid var(--border)",
-        alignItems: "center",
-      }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      <span style={{
-        color: current ? "var(--accent2)" : "var(--muted)", fontSize: 10,
-        textShadow: current ? "0 0 8px var(--accent2)" : "none",
-        animation: current ? "pulse-glow 2s ease-in-out infinite" : "none",
-      }}>
-        {current ? "▶" : "○"}
-      </span>
-      <div style={{
-        fontFamily: "'DM Mono', monospace", fontSize: 14, fontWeight: 700,
-        color: hovered ? "var(--accent)" : "var(--text)",
-        transition: "all 0.2s",
-        textShadow: hovered ? "0 0 8px var(--accent)" : "none",
-      }}>{role}</div>
-      <div style={{ fontSize: 12, color: "var(--muted)", fontFamily: "'DM Mono', monospace" }}>{company}</div>
-      <div style={{
-        fontSize: 10,
-        color: current ? "var(--accent2)" : "var(--muted)",
-        fontFamily: "'DM Mono', monospace", letterSpacing: "0.08em",
-        border: current ? "1px solid rgba(34,211,238,0.35)" : "none",
-        padding: current ? "3px 10px" : "3px 0",
-        boxShadow: current ? "0 0 8px rgba(34,211,238,0.2)" : "none",
-        whiteSpace: "nowrap",
-      }}>{period}</div>
-    </div>
-  );
-}

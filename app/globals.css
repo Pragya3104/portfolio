@@ -1,5 +1,21 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'Hecate Display';
+  src: url('/fonts/Hecate Display-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hecate Display';
+  src: url('/fonts/Hecate Display-Italic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
 :root {
   --bg: #04000e;
   --surface: #0b0421;
@@ -84,6 +100,20 @@ body::after {
 @keyframes gradient-shift {
   0%,100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
+}
+
+/* 3D orbital ring animations */
+@keyframes orbit-1 {
+  from { transform: perspective(500px) rotateX(72deg) rotateZ(0deg); }
+  to   { transform: perspective(500px) rotateX(72deg) rotateZ(360deg); }
+}
+@keyframes orbit-2 {
+  from { transform: perspective(500px) rotateX(62deg) rotateY(55deg) rotateZ(0deg); }
+  to   { transform: perspective(500px) rotateX(62deg) rotateY(55deg) rotateZ(-360deg); }
+}
+@keyframes orbit-3 {
+  from { transform: perspective(500px) rotateX(68deg) rotateY(-42deg) rotateZ(0deg); }
+  to   { transform: perspective(500px) rotateX(68deg) rotateY(-42deg) rotateZ(360deg); }
 }
 
 /* Hero name base — allows glitch to override */

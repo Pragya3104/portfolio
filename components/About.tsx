@@ -61,7 +61,15 @@ export default function About() {
   }, []);
 
   return (
-    <section id="about" ref={sectionRef} style={{ padding: "100px 40px" }}>
+    <section id="about" ref={sectionRef} style={{ padding: "100px 40px", position: "relative", overflow: "hidden" }}>
+      {/* Section watermark */}
+      <div aria-hidden="true" style={{
+        position: "absolute", top: -10, right: -15,
+        fontSize: "clamp(130px, 21vw, 260px)",
+        fontFamily: "'Syne', sans-serif", fontWeight: 800,
+        color: "rgba(255,255,255,0.018)", letterSpacing: "-0.04em",
+        userSelect: "none", pointerEvents: "none", lineHeight: 1, whiteSpace: "nowrap",
+      }}>ABOUT</div>
       <div className="about-header" style={{ marginBottom: 56, display: "flex", alignItems: "center", gap: 16 }}>
         <span style={{ color: "var(--accent)", fontSize: 11, opacity: 0.6 }}>$</span>
         <span style={{ color: "var(--muted)", fontSize: 11 }}>cat</span>
@@ -73,93 +81,51 @@ export default function About() {
       </div>
 
       <div style={{ display: "grid", gridTemplateColumns: "3fr 2fr", gap: 2 }}>
-        {/* Bio card — with profile photo */}
+        {/* Bio card */}
         <div className="about-bio" style={{
-          border: "1px solid var(--border)",
           borderTop: "2px solid var(--accent)",
+          borderRight: "1px solid var(--border)",
+          borderBottom: "1px solid var(--border)",
+          borderLeft: "1px solid var(--border)",
           padding: "40px",
           position: "relative",
-          background: "var(--surface)",
-          boxShadow: "0 0 40px rgba(192,132,252,0.05)",
-          display: "flex", gap: 32,
+          background: "rgba(11, 4, 33, 0.6)",
+          backdropFilter: "blur(12px)",
+          WebkitBackdropFilter: "blur(12px)",
+          boxShadow: "0 8px 32px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.06)",
         }}>
           <div style={{ position: "absolute", top: 16, right: 20, fontSize: 9, color: "var(--muted)", letterSpacing: "0.1em" }}>
             about_me.txt • 3 lines
           </div>
-
-          {/* Text content */}
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "clamp(15px, 1.8vw, 22px)", lineHeight: 1.7, color: "var(--text)", marginBottom: 28 }}>
-              <span style={{ color: "var(--accent)" }}>// </span>
-              Final-year CS student @ SRM University.<br />
-              Specialising in <span style={{ color: "var(--accent2)", textShadow: "0 0 8px rgba(34,211,238,0.5)" }}>Data Science & AI</span>.
-            </p>
-            <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 13, color: "var(--muted)", lineHeight: 1.9, marginBottom: 20 }}>
-              Shipped production AI systems at Infosys Springboard, Edunet Foundation, and Xyronix Labs. From multi-turn LLM agents to full-stack analytics dashboards tracking 1,000+ study sessions.
-            </p>
-            <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 13, color: "var(--muted)", lineHeight: 1.9 }}>
-              I care about systems that work at scale — clean APIs, reproducible pipelines, and code that future-you won&apos;t hate.
-            </p>
-            <div style={{ marginTop: 36, display: "flex", gap: 12 }}>
-              <a href="mailto:pragyajha314@gmail.com" style={{
-                padding: "9px 22px", border: "1px solid var(--accent)",
-                color: "var(--accent)", textDecoration: "none", fontSize: 11,
-                letterSpacing: "0.08em", transition: "all 0.2s",
-                boxShadow: "0 0 8px rgba(192,132,252,0.2)",
-              }}
-                onMouseEnter={e => { e.currentTarget.style.background = "var(--accent)"; e.currentTarget.style.color = "var(--bg)"; e.currentTarget.style.boxShadow = "0 0 24px rgba(192,132,252,0.5)"; }}
-                onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "var(--accent)"; e.currentTarget.style.boxShadow = "0 0 8px rgba(192,132,252,0.2)"; }}
-              >[send_message]</a>
-              <a href="https://github.com/Pragya314" target="_blank" rel="noopener noreferrer" style={{
-                padding: "9px 22px", border: "1px solid var(--border)",
-                color: "var(--muted)", textDecoration: "none", fontSize: 11,
-                letterSpacing: "0.08em", transition: "all 0.2s",
-              }}
-                onMouseEnter={e => { e.currentTarget.style.borderColor = "var(--accent2)"; e.currentTarget.style.color = "var(--accent2)"; e.currentTarget.style.boxShadow = "0 0 12px rgba(34,211,238,0.2)"; }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.color = "var(--muted)"; e.currentTarget.style.boxShadow = "none"; }}
-              >[github_↗]</a>
-            </div>
-          </div>
-
-          {/* Profile photo — add your photo to /public/profile.jpg */}
-          <div style={{
-            width: 176, flexShrink: 0,
-            border: "1px solid var(--border)",
-            background: "var(--bg)",
-            overflow: "hidden",
-            alignSelf: "flex-start",
-          }}>
-            <div style={{
-              fontSize: 9, color: "var(--muted)", padding: "6px 10px",
-              borderBottom: "1px solid var(--border)", letterSpacing: "0.1em",
-            }}>
-              IMG pragya.jpg
-            </div>
-            <div style={{ position: "relative", aspectRatio: "3/4", background: "var(--surface2)" }}>
-              {/* Replace /profile.jpg with your actual photo path */}
-              <img
-                src="/profile.jpg"
-                alt="Pragya Jha"
-                style={{
-                  width: "100%", height: "100%",
-                  objectFit: "cover", display: "block",
-                  filter: "grayscale(15%) contrast(1.05) brightness(0.88)",
-                }}
-                onError={e => { (e.target as HTMLImageElement).style.opacity = "0"; }}
-              />
-              {/* CRT scan line overlay on photo */}
-              <div style={{
-                position: "absolute", inset: 0,
-                backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.1) 2px, rgba(0,0,0,0.1) 3px)",
-                pointerEvents: "none",
-              }} />
-              {/* Purple tint overlay */}
-              <div style={{
-                position: "absolute", inset: 0,
-                background: "rgba(192,132,252,0.06)",
-                pointerEvents: "none",
-              }} />
-            </div>
+          <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "clamp(15px, 1.8vw, 22px)", lineHeight: 1.7, color: "var(--text)", marginBottom: 28 }}>
+            <span style={{ color: "var(--accent)" }}>// </span>
+            Final-year CS student @ SRM University.<br />
+            Specialising in <span style={{ color: "var(--accent2)", textShadow: "0 0 8px rgba(34,211,238,0.5)" }}>Data Science & AI</span>.
+          </p>
+          <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 13, color: "var(--muted)", lineHeight: 1.9, marginBottom: 20 }}>
+            Shipped production AI systems at Infosys Springboard, Edunet Foundation, and Xyronix Labs. From multi-turn LLM agents to full-stack analytics dashboards tracking 1,000+ study sessions.
+          </p>
+          <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 13, color: "var(--muted)", lineHeight: 1.9 }}>
+            I care about systems that work at scale — clean APIs, reproducible pipelines, and code that future-you won&apos;t hate.
+          </p>
+          <div style={{ marginTop: 36, display: "flex", gap: 12 }}>
+            <a href="mailto:pragyajha314@gmail.com" style={{
+              padding: "9px 22px", border: "1px solid var(--accent)",
+              color: "var(--accent)", textDecoration: "none", fontSize: 11,
+              letterSpacing: "0.08em", transition: "all 0.2s",
+              boxShadow: "0 0 8px rgba(192,132,252,0.2)",
+            }}
+              onMouseEnter={e => { e.currentTarget.style.background = "var(--accent)"; e.currentTarget.style.color = "var(--bg)"; e.currentTarget.style.boxShadow = "0 0 24px rgba(192,132,252,0.5)"; }}
+              onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "var(--accent)"; e.currentTarget.style.boxShadow = "0 0 8px rgba(192,132,252,0.2)"; }}
+            >[send_message]</a>
+            <a href="https://github.com/Pragya314" target="_blank" rel="noopener noreferrer" style={{
+              padding: "9px 22px", border: "1px solid var(--border)",
+              color: "var(--muted)", textDecoration: "none", fontSize: 11,
+              letterSpacing: "0.08em", transition: "all 0.2s",
+            }}
+              onMouseEnter={e => { e.currentTarget.style.borderColor = "var(--accent2)"; e.currentTarget.style.color = "var(--accent2)"; e.currentTarget.style.boxShadow = "0 0 12px rgba(34,211,238,0.2)"; }}
+              onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.color = "var(--muted)"; e.currentTarget.style.boxShadow = "none"; }}
+            >[github_↗]</a>
           </div>
         </div>
 
@@ -168,10 +134,15 @@ export default function About() {
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
             {stats.map((s, i) => (
               <div key={i} className="about-stat" style={{
-                border: "1px solid var(--border)",
                 borderTop: `2px solid ${s.color}`,
+                borderRight: "1px solid var(--border)",
+                borderBottom: "1px solid var(--border)",
+                borderLeft: "1px solid var(--border)",
                 padding: "24px 20px",
-                background: "var(--surface)",
+                background: "rgba(11, 4, 33, 0.6)",
+                backdropFilter: "blur(12px)",
+                WebkitBackdropFilter: "blur(12px)",
+                boxShadow: "0 4px 24px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05)",
               }}>
                 <div style={{
                   fontFamily: "'DM Mono', monospace", fontSize: 44, fontWeight: 700,
@@ -187,7 +158,12 @@ export default function About() {
           </div>
 
           {/* Skills — cycling hover colors via CSS custom props */}
-          <div className="about-skills" style={{ border: "1px solid var(--border)", padding: "20px", background: "var(--surface)", flex: 1 }}>
+          <div className="about-skills" style={{
+            border: "1px solid var(--border)", padding: "20px", flex: 1,
+            background: "rgba(11, 4, 33, 0.6)",
+            backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)",
+            boxShadow: "0 4px 24px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05)",
+          }}>
             <div style={{ fontSize: 9, color: "var(--muted)", marginBottom: 14, letterSpacing: "0.1em" }}>$ ls ./skills/</div>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
               {skills.map((s, i) => (

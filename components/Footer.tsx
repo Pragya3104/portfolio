@@ -19,11 +19,15 @@ export default function Footer() {
       fontFamily: "'DM Mono', monospace",
     }}>
       <div style={{ fontSize: 10, color: "var(--muted)" }}>
-        © 2025 <span style={{ color: "var(--accent)" }}>pragya_jha</span> · built with next.js + gsap
+        © 2026 <span style={{ color: "var(--accent)" }}>pragya_jha</span> · built with next.js + gsap
       </div>
-      <div style={{ fontSize: 10, color: "var(--muted)", display: "flex", gap: 24 }}>
-        <span>SESSION_UPTIME: <span style={{ color: "var(--accent)" }}>{uptime}s</span></span>
-        <span>STATUS: <span style={{ color: "var(--accent2)", textShadow: "0 0 6px var(--accent2)" }}>● ONLINE</span></span>
+      <div style={{ fontSize: 12, color: "var(--muted)", display: "flex", gap: 24 }}>
+        <span style={{ color: "var(--accent)", fontSize: 12, letterSpacing: "0.1em", textShadow: "0 0 8px var(--accent)" }}>YOU MADE IT THIS FAR!</span>
+        <span style={{
+              color: "var(--accent2)",
+              textShadow: "0 0 40px rgba(34,211,238,0.45), 0 0 80px rgba(34,211,238,0.15)",
+              display: "block",
+            }}>AMAZE! AMAZE! AMAZE!</span>
       </div>
       <a href="#hero" style={{
         fontSize: 10, letterSpacing: "0.1em",
