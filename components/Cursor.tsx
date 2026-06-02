@@ -16,8 +16,8 @@ export default function Cursor() {
     window.addEventListener("mousemove", onMove);
 
     const tick = () => {
-      rx += (mx - rx) * 0.12;
-      ry += (my - ry) * 0.12;
+      rx += (mx - rx) * 0.45;
+      ry += (my - ry) * 0.45;
       gsap.set(dot, { x: mx, y: my });
       gsap.set(ring, { x: rx, y: ry });
     };

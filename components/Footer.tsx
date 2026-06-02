@@ -23,13 +23,13 @@ export default function Footer() {
       </div>
       <div style={{ fontSize: 10, color: "var(--muted)", display: "flex", gap: 24 }}>
         <span>SESSION_UPTIME: <span style={{ color: "var(--accent)" }}>{uptime}s</span></span>
-        <span>STATUS: <span style={{ color: "var(--accent)", textShadow: "0 0 6px var(--accent)" }}>● ONLINE</span></span>
+        <span>STATUS: <span style={{ color: "var(--accent2)", textShadow: "0 0 6px var(--accent2)" }}>● ONLINE</span></span>
       </div>
       <a href="#hero" style={{
         fontSize: 10, letterSpacing: "0.1em",
         color: "var(--muted)", textDecoration: "none", transition: "all 0.2s",
       }}
-        onMouseEnter={e => { e.currentTarget.style.color = "var(--accent)"; e.currentTarget.style.textShadow = "0 0 6px var(--accent)"; }}
+        onMouseEnter={e => { e.currentTarget.style.color = "var(--accent2)"; e.currentTarget.style.textShadow = "0 0 6px var(--accent2)"; }}
         onMouseLeave={e => { e.currentTarget.style.color = "var(--muted)"; e.currentTarget.style.textShadow = "none"; }}
       >[scroll_to_top ↑]</a>
     </footer>

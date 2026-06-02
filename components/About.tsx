@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ScrambleText from "./ScrambleText";
 
 if (typeof window !== "undefined") gsap.registerPlugin(ScrollTrigger);
 
@@ -12,11 +13,13 @@ const skills = [
   "IBM Cloud", "REST APIs", "CI/CD", "R", "NoSQL",
 ];
 
+const tagAccents = ["var(--accent)", "var(--accent2)", "var(--warm)"];
+
 const stats = [
-  { num: 2, suffix: "+", label: "Internships" },
-  { num: 5, suffix: "+", label: "Projects" },
-  { num: 12, suffix: "+", label: "APIs Built" },
-  { num: 2, suffix: "×", label: "IBM Certs" },
+  { num: 2, suffix: "+", label: "Internships", color: "var(--accent)", glow: "rgba(192,132,252,0.45)" },
+  { num: 5, suffix: "+", label: "Projects", color: "var(--accent2)", glow: "rgba(34,211,238,0.45)" },
+  { num: 12, suffix: "+", label: "APIs Built", color: "var(--warm)", glow: "rgba(244,114,182,0.45)" },
+  { num: 2, suffix: "×", label: "IBM Certs", color: "var(--accent)", glow: "rgba(192,132,252,0.45)" },
 ];
 
 export default function About() {
@@ -27,10 +30,29 @@ export default function About() {
     if (typeof window === "undefined") return;
     const timer = setTimeout(() => {
       const ctx = gsap.context(() => {
-        gsap.fromTo(".about-block",
-          { opacity: 0, y: 30 },
-          { opacity: 1, y: 0, stagger: 0.1, duration: 0.8, ease: "power2.out",
-            scrollTrigger: { trigger: "#about", start: "top 80%", onEnter: () => setCounted(true) } }
+        const tl = gsap.timeline({
+          scrollTrigger: { trigger: sectionRef.current, start: "top 75%", onEnter: () => setCounted(true) },
+          defaults: { ease: "power3.out" },
+        });
+
+        tl.fromTo(".about-header",
+          { y: -40, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6 }
+        )
+        .fromTo(".about-bio",
+          { x: -90, opacity: 0, rotation: -2, scale: 0.97 },
+          { x: 0, opacity: 1, rotation: 0, scale: 1, duration: 1.1 },
+          "-=0.25"
+        )
+        .fromTo(".about-stat",
+          { y: 60, opacity: 0, scale: 0.88 },
+          { y: 0, opacity: 1, scale: 1, stagger: 0.09, duration: 0.75, ease: "back.out(1.7)" },
+          "-=0.65"
+        )
+        .fromTo(".about-skills",
+          { y: 40, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.7 },
+          "-=0.4"
         );
       }, sectionRef);
       return () => ctx.revert();
@@ -40,82 +62,159 @@ export default function About() {
 
   return (
     <section id="about" ref={sectionRef} style={{ padding: "100px 40px" }}>
-      <div style={{ marginBottom: 56, display: "flex", alignItems: "center", gap: 16 }}>
+      <div className="about-header" style={{ marginBottom: 56, display: "flex", alignItems: "center", gap: 16 }}>
         <span style={{ color: "var(--accent)", fontSize: 11, opacity: 0.6 }}>$</span>
         <span style={{ color: "var(--muted)", fontSize: 11 }}>cat</span>
-        <span style={{ color: "var(--accent)", fontSize: 13, fontWeight: 700, letterSpacing: "0.1em", textShadow: "0 0 8px var(--accent)" }}>./about_me.txt</span>
-        <div style={{ flex: 1, height: 1, background: "var(--border)" }} />
+        <span style={{ color: "var(--accent)", fontSize: 13, fontWeight: 700, letterSpacing: "0.1em", textShadow: "0 0 8px var(--accent)" }}>
+          <ScrambleText text="./about_me.txt" />
+        </span>
+        <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, var(--border-bright), transparent)" }} />
         <span style={{ color: "var(--muted)", fontSize: 10 }}>00</span>
       </div>
 
       <div style={{ display: "grid", gridTemplateColumns: "3fr 2fr", gap: 2 }}>
-        <div className="about-block" style={{
-          border: "1px solid var(--border)", padding: "40px",
-          position: "relative", background: "var(--surface)",
+        {/* Bio card — with profile photo */}
+        <div className="about-bio" style={{
+          border: "1px solid var(--border)",
+          borderTop: "2px solid var(--accent)",
+          padding: "40px",
+          position: "relative",
+          background: "var(--surface)",
+          boxShadow: "0 0 40px rgba(192,132,252,0.05)",
+          display: "flex", gap: 32,
         }}>
           <div style={{ position: "absolute", top: 16, right: 20, fontSize: 9, color: "var(--muted)", letterSpacing: "0.1em" }}>
             about_me.txt • 3 lines
           </div>
-          <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "clamp(15px, 1.8vw, 22px)", lineHeight: 1.7, color: "var(--text)", marginBottom: 28 }}>
-            <span style={{ color: "var(--accent)" }}>// </span>
-            Final-year CS student @ SRM University.<br />
-            Specialising in <span style={{ color: "var(--accent2)", textShadow: "0 0 8px var(--accent2)" }}>Data Science & AI</span>.
-          </p>
-          <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 13, color: "var(--muted)", lineHeight: 1.9, marginBottom: 20 }}>
-            Shipped production AI systems at Infosys Springboard, Edunet Foundation, and Xyronix Labs. From multi-turn LLM agents to full-stack analytics dashboards tracking 1,000+ study sessions.
-          </p>
-          <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 13, color: "var(--muted)", lineHeight: 1.9 }}>
-            I care about systems that work at scale — clean APIs, reproducible pipelines, and code that future-you won&apos;t hate.
-          </p>
-          <div style={{ marginTop: 36, display: "flex", gap: 12 }}>
-            <a href="mailto:pragyajha314@gmail.com" style={{
-              padding: "9px 22px", border: "1px solid var(--accent)",
-              color: "var(--accent)", textDecoration: "none", fontSize: 11,
-              letterSpacing: "0.08em", transition: "all 0.2s",
-              boxShadow: "0 0 8px rgba(191,95,255,0.2)",
-            }}
-              onMouseEnter={e => { e.currentTarget.style.background = "var(--accent)"; e.currentTarget.style.color = "var(--bg)"; e.currentTarget.style.boxShadow = "0 0 24px rgba(191,95,255,0.5)"; }}
-              onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "var(--accent)"; e.currentTarget.style.boxShadow = "0 0 8px rgba(191,95,255,0.2)"; }}
-            >[send_message]</a>
-            <a href="https://github.com/Pragya314" target="_blank" rel="noopener noreferrer" style={{
-              padding: "9px 22px", border: "1px solid var(--border)",
-              color: "var(--muted)", textDecoration: "none", fontSize: 11,
-              letterSpacing: "0.08em", transition: "all 0.2s",
-            }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = "var(--accent2)"; e.currentTarget.style.color = "var(--accent2)"; }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.color = "var(--muted)"; }}
-            >[github_↗]</a>
+
+          {/* Text content */}
+          <div style={{ flex: 1, minWidth: 0 }}>
+            <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "clamp(15px, 1.8vw, 22px)", lineHeight: 1.7, color: "var(--text)", marginBottom: 28 }}>
+              <span style={{ color: "var(--accent)" }}>// </span>
+              Final-year CS student @ SRM University.<br />
+              Specialising in <span style={{ color: "var(--accent2)", textShadow: "0 0 8px rgba(34,211,238,0.5)" }}>Data Science & AI</span>.
+            </p>
+            <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 13, color: "var(--muted)", lineHeight: 1.9, marginBottom: 20 }}>
+              Shipped production AI systems at Infosys Springboard, Edunet Foundation, and Xyronix Labs. From multi-turn LLM agents to full-stack analytics dashboards tracking 1,000+ study sessions.
+            </p>
+            <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 13, color: "var(--muted)", lineHeight: 1.9 }}>
+              I care about systems that work at scale — clean APIs, reproducible pipelines, and code that future-you won&apos;t hate.
+            </p>
+            <div style={{ marginTop: 36, display: "flex", gap: 12 }}>
+              <a href="mailto:pragyajha314@gmail.com" style={{
+                padding: "9px 22px", border: "1px solid var(--accent)",
+                color: "var(--accent)", textDecoration: "none", fontSize: 11,
+                letterSpacing: "0.08em", transition: "all 0.2s",
+                boxShadow: "0 0 8px rgba(192,132,252,0.2)",
+              }}
+                onMouseEnter={e => { e.currentTarget.style.background = "var(--accent)"; e.currentTarget.style.color = "var(--bg)"; e.currentTarget.style.boxShadow = "0 0 24px rgba(192,132,252,0.5)"; }}
+                onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "var(--accent)"; e.currentTarget.style.boxShadow = "0 0 8px rgba(192,132,252,0.2)"; }}
+              >[send_message]</a>
+              <a href="https://github.com/Pragya314" target="_blank" rel="noopener noreferrer" style={{
+                padding: "9px 22px", border: "1px solid var(--border)",
+                color: "var(--muted)", textDecoration: "none", fontSize: 11,
+                letterSpacing: "0.08em", transition: "all 0.2s",
+              }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = "var(--accent2)"; e.currentTarget.style.color = "var(--accent2)"; e.currentTarget.style.boxShadow = "0 0 12px rgba(34,211,238,0.2)"; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.color = "var(--muted)"; e.currentTarget.style.boxShadow = "none"; }}
+              >[github_↗]</a>
+            </div>
+          </div>
+
+          {/* Profile photo — add your photo to /public/profile.jpg */}
+          <div style={{
+            width: 176, flexShrink: 0,
+            border: "1px solid var(--border)",
+            background: "var(--bg)",
+            overflow: "hidden",
+            alignSelf: "flex-start",
+          }}>
+            <div style={{
+              fontSize: 9, color: "var(--muted)", padding: "6px 10px",
+              borderBottom: "1px solid var(--border)", letterSpacing: "0.1em",
+            }}>
+              IMG pragya.jpg
+            </div>
+            <div style={{ position: "relative", aspectRatio: "3/4", background: "var(--surface2)" }}>
+              {/* Replace /profile.jpg with your actual photo path */}
+              <img
+                src="/profile.jpg"
+                alt="Pragya Jha"
+                style={{
+                  width: "100%", height: "100%",
+                  objectFit: "cover", display: "block",
+                  filter: "grayscale(15%) contrast(1.05) brightness(0.88)",
+                }}
+                onError={e => { (e.target as HTMLImageElement).style.opacity = "0"; }}
+              />
+              {/* CRT scan line overlay on photo */}
+              <div style={{
+                position: "absolute", inset: 0,
+                backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.1) 2px, rgba(0,0,0,0.1) 3px)",
+                pointerEvents: "none",
+              }} />
+              {/* Purple tint overlay */}
+              <div style={{
+                position: "absolute", inset: 0,
+                background: "rgba(192,132,252,0.06)",
+                pointerEvents: "none",
+              }} />
+            </div>
           </div>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
-          <div className="about-block" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
+          {/* Stats — each with unique accent color */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
             {stats.map((s, i) => (
-              <div key={i} style={{ border: "1px solid var(--border)", padding: "24px 20px", background: "var(--surface)" }}>
-                <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 44, fontWeight: 700, lineHeight: 1, color: "var(--accent)", textShadow: "0 0 20px rgba(191,95,255,0.5)" }}>
+              <div key={i} className="about-stat" style={{
+                border: "1px solid var(--border)",
+                borderTop: `2px solid ${s.color}`,
+                padding: "24px 20px",
+                background: "var(--surface)",
+              }}>
+                <div style={{
+                  fontFamily: "'DM Mono', monospace", fontSize: 44, fontWeight: 700,
+                  lineHeight: 1, color: s.color, textShadow: `0 0 20px ${s.glow}`,
+                }}>
                   <CountUp target={s.num} suffix={s.suffix} trigger={counted} />
                 </div>
-                <div style={{ fontSize: 9, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--muted)", marginTop: 6 }}>{s.label}</div>
+                <div style={{ fontSize: 9, letterSpacing: "0.15em", textTransform: "uppercase", color: "var(--muted)", marginTop: 6 }}>
+                  {s.label}
+                </div>
               </div>
             ))}
           </div>
-          <div className="about-block" style={{ border: "1px solid var(--border)", padding: "20px", background: "var(--surface)", flex: 1 }}>
+
+          {/* Skills — cycling hover colors via CSS custom props */}
+          <div className="about-skills" style={{ border: "1px solid var(--border)", padding: "20px", background: "var(--surface)", flex: 1 }}>
             <div style={{ fontSize: 9, color: "var(--muted)", marginBottom: 14, letterSpacing: "0.1em" }}>$ ls ./skills/</div>
             <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-              {skills.map(s => (
-                <span key={s} style={{
-                  fontSize: 10, color: "var(--muted)", border: "1px solid var(--border)",
-                  padding: "3px 10px", fontFamily: "'DM Mono', monospace", transition: "all 0.2s", cursor: "default",
-                }}
-                  onMouseEnter={e => { e.currentTarget.style.borderColor = "var(--accent)"; e.currentTarget.style.color = "var(--accent)"; e.currentTarget.style.boxShadow = "0 0 6px rgba(191,95,255,0.35)"; }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.color = "var(--muted)"; e.currentTarget.style.boxShadow = "none"; }}
+              {skills.map((s, i) => (
+                <span
+                  key={s}
+                  className="skill-tag"
+                  style={{
+                    "--tag-color": tagAccents[i % 3],
+                    fontSize: 10, color: "var(--muted)",
+                    border: "1px solid var(--border)",
+                    padding: "3px 10px",
+                    fontFamily: "'DM Mono', monospace",
+                    transition: "all 0.2s", cursor: "default",
+                  } as React.CSSProperties}
                 >{s}</span>
               ))}
             </div>
           </div>
         </div>
       </div>
+
       <style>{`
+        .skill-tag:hover {
+          border-color: var(--tag-color) !important;
+          color: var(--tag-color) !important;
+          box-shadow: 0 0 8px var(--tag-color);
+        }
         @media (max-width: 900px) {
           #about { padding: 80px 20px !important; }
           #about > div > div[style*="3fr"] { grid-template-columns: 1fr !important; }
