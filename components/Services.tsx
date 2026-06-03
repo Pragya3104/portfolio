@@ -10,7 +10,7 @@ const services = [
   {
     cmd: "run ai_ml_engineering.py",
     name: "AI & ML Engineering",
-    desc: "End-to-end ML pipelines — preprocessing, training, deployment. NLP, classification, clustering. Reproducible, scalable, production-ready.",
+    desc: "End-to-end ML pipelines — preprocessing, training, deployment. NLP, classification, clustering. Built systems handling 1,000+ real user interactions.",
     tools: ["Python", "Scikit-learn", "Hugging Face", "Groq", "Pandas"],
     accent: "var(--accent)", glow: "rgba(192,132,252,0.18)",
   },
@@ -24,10 +24,17 @@ const services = [
   {
     cmd: "deploy llm_agent --stream",
     name: "LLM & Agentic Systems",
-    desc: "Multi-turn conversational agents with tool-calling and memory. IBM watsonx.ai, LangGraph orchestration, ReAct architectures.",
-    tools: ["LangGraph", "watsonx.ai", "LLM", "ReAct", "Prompting"],
+    desc: "Multi-turn conversational agents with tool-calling, memory, and live API integration. LangGraph orchestration, React architecture, OpenAI and watsonx.ai. Sub-400ms response latency in production.",
+    tools: ["LangGraph", "watsonx.ai", "LLM", "React", "Prompting"],
     accent: "var(--warm)", glow: "rgba(244,114,182,0.15)",
   },
+  { 
+  cmd: "build frontend --fullstack", 
+  name: "Full-Stack Development", 
+  desc: "End-to-end web applications from React/Next.js frontends to FastAPI backends. Delivered a complete client-facing product solo for an international client — 2 clicks to a 50-page AI-generated output.", 
+  tools: ["React", "Next.js", "FastAPI", "JavaScript", "REST APIs"], 
+  accent: "var(--accent)", glow: "rgba(192,132,252,0.18)",
+},
 ];
 
 
@@ -78,7 +85,7 @@ export default function Services() {
         <span style={{ color: "var(--muted)", fontSize: 10 }}>02</span>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1fr 1fr", gap: 2, marginBottom: 2 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 2, marginBottom: 2 }}>
         {services.map(s => <ServiceCard key={s.name} service={s} />)}
       </div>
 

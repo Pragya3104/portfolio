@@ -9,7 +9,15 @@ if (typeof window !== "undefined") gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
-    id: "01", status: "SHIPPED",
+    id: "01", status: "DEPLOYED",
+    title: "AI Question Paper Generation System",
+    desc: "End-to-end paper generation agent using GPT-4.1 Mini — 50-page syllabus-aligned question papers in under 2 clicks. Full-stack: React frontend, FastAPI backend, deployed for a live coaching centre client in Australia.",
+    tech: ["GPT-4.1 Mini", "React", "FastAPI", "Prompt Engineering"],
+    year: "2026",
+    accent: "var(--accent2)", glow: "rgba(34,211,238,0.15)",
+  },
+  {
+    id: "02", status: "SHIPPED",
     title: "Emotion-Aware Wellness Chatbot",
     desc: "NLP-driven chatbot using BERT/RoBERTa to classify user sentiment across 5+ categories. Groq LLM for context-aware responses — <300ms latency across 1,000+ interactions.",
     tech: ["Python", "Hugging Face", "Groq LLM", "BERT"],
@@ -17,23 +25,23 @@ const projects = [
     accent: "var(--accent)", glow: "rgba(192,132,252,0.18)",
   },
   {
-    id: "02", status: "SHIPPED",
+    id: "03", status: "SHIPPED",
     title: "Student Analytics Platform",
-    desc: "Full-stack platform tracking 1,000+ study sessions. K-Means clustering on 5+ behavioural features. 12+ REST APIs for auth, analytics, and admin workflows.",
+    desc: "Full-stack platform built at Infosys tracking 1,000+ study sessions. K-Means clustering on 5+ behavioural features. 12+ REST APIs for auth, analytics, and admin workflows.",
     tech: ["FastAPI", "Next.js", "K-Means", "Pandas"],
     year: "2025", github: "https://github.com/tarun0714/Study-Track-AI-based-Student-Study-Habit-Recommender---Infosys.git",
     accent: "var(--accent2)", glow: "rgba(34,211,238,0.15)",
   },
   {
-    id: "03", status: "SHIPPED",
+    id: "04", status: "SHIPPED",
     title: "LLM Travel Planning Agent",
-    desc: "Conversational AI agent with LangGraph orchestration + ReAct architecture. 500+ multi-turn interactions, 3+ external API integrations, <400ms latency.",
-    tech: ["IBM watsonx.ai", "LangGraph", "Granite-3-3-8B"],
+    desc: "Conversational AI agent built at Edunet with LangGraph orchestration + ReAct architecture. 500+ multi-turn interactions, 3+ external API integrations, <400ms latency.",
+    tech: ["IBM watsonx.ai", "LangGraph", "Python"],
     year: "2025", github: "https://github.com/Pragya3104/Travel_ai_agent.git",
     accent: "var(--warm)", glow: "rgba(244,114,182,0.15)",
   },
   {
-    id: "04", status: "COMPLETE",
+    id: "05", status: "RESEARCH",
     title: "Exoplanet Data Analysis",
     desc: "EDA pipeline on 10,000+ NASA records. Multi-dimensional plots, habitability zone mapping, time-series analysis on exoplanet discovery patterns.",
     tech: ["Python", "Pandas", "Matplotlib", "Seaborn"],
@@ -114,6 +122,9 @@ export default function Work() {
         <div className="work-card-wide" style={{ gridColumn: "1 / -1" }}>
           <ProjectCard project={projects[3]} wide onOpen={setSelected} />
         </div>
+        <div style={{ gridColumn: "1 / -1" }}>
+          <ProjectCard project={projects[4]} wide onOpen={setSelected}/>
+        </div>
       </div>
 
       {selected && <ProjectModal project={selected} onClose={closeModal} />}
@@ -178,7 +189,7 @@ function ProjectModal({ project: p, onClose }: { project: Project; onClose: () =
 
         {/* Tech */}
         <div style={{ marginBottom: 32 }}>
-          <div style={{ fontSize: 9, color: "var(--muted)", letterSpacing: "0.12em", marginBottom: 10 }}>// TECH STACK</div>
+          <div style={{ fontSize: 9, color: "var(--muted)", letterSpacing: "0.12em", marginBottom: 10 }}>{"// "}TECH STACK</div>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
             {p.tech.map(t => (
               <span key={t} style={{ fontSize: 10, color: p.accent, border: `1px solid ${p.accent}40`, padding: "3px 10px", letterSpacing: "0.08em", textTransform: "uppercase" }}>{t}</span>

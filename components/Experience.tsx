@@ -8,10 +8,24 @@ if (typeof window !== "undefined") gsap.registerPlugin(ScrollTrigger);
 
 const experiences = [
   {
+    role: "AI Paper Generation Agent",
+    company: "Freelance Project for International Client",
+    period: "Mar 2026 – May 2026",
+    current: false,
+    accent: "var(--warm)",
+    glow: "rgba(244,114,182,0.18)",
+    tech: ["Python", "GPT-4.1 MINI",  "REACT",   "FASTAPI",  "REST APIs", "Prompt Engineering", "Git"],
+    bullets: [
+      "Built an end-to-end AI paper generation system using GPT-4.1 Mini and React + FastAPI, producing fully structured 50-page question papers in under 2 clicks.",
+      "Engineered prompt pipelines to generate syllabus-aligned, multi-subject papers with configurable difficulty levels and consistent formatting.",
+      "Delivered a production-ready full-stack product solo for an international client, handling requirements, iteration, and handoff end-to-end.",
+    ],
+  },
+  {
     role: "AI & Data Science Intern",
     company: "Infosys Springboard",
     period: "Oct 2025 – Dec 2025",
-    current: true,
+    current: false,
     accent: "var(--accent)",
     glow: "rgba(192,132,252,0.18)",
     tech: ["FastAPI", "Next.js", "K-Means", "Scikit-learn", "Pandas", "Python"],
@@ -19,8 +33,8 @@ const experiences = [
       "Developed a full-stack student analytics platform using FastAPI and Next.js, enabling tracking of 1,000+ study sessions and delivering personalised performance insights.",
       "Created 12+ REST APIs for managing study sessions, student data, OTP-based authentication, and admin analytics workflows.",
       "Built an ML pipeline using K-Means clustering (K=3) on 5+ behavioural features to segment students into performance categories, improving identification of at-risk students.",
-      "Generated a rule-based recommendation engine with 10+ decision rules, producing actionable insights to improve study efficiency and reduce distractions.",
-      "Enabled data processing and visualisation pipelines using Pandas, Scikit-learn, and charting tools — supporting real-time dashboards and reducing analysis time by ~30%.",
+      "Designed a rule-based recommendation engine with 10+ decision rules, producing actionable insights to improve study efficiency and reduce distractions.",
+      "Deployed data processing and visualisation pipelines using Pandas, Scikit-learn, and charting tools — supporting real-time dashboards and reducing analysis time by ~30%.",
     ],
   },
   {
@@ -30,12 +44,12 @@ const experiences = [
     current: false,
     accent: "var(--accent2)",
     glow: "rgba(34,211,238,0.15)",
-    tech: ["IBM watsonx.ai", "LangGraph", "Granite-3-3-8B", "Python", "ReAct"],
+    tech: ["IBM watsonx.ai", "LangGraph", "LLM Integration", "Python", "React"],
     bullets: [
-      "Assembled an LLM-powered conversational AI agent using IBM watsonx.ai, implementing LangGraph-based orchestration with ReAct architecture for reasoning and tool invocation.",
+      "Engineered an LLM-powered conversational AI agent using IBM watsonx.ai, implementing LangGraph-based orchestration with React architecture for reasoning and tool invocation.",
       "Integrated Granite-3-3-8B-Instruct LLM with optimised decoding parameters, enabling context-aware itinerary generation across 500+ multi-turn interactions.",
-      "Executed tool-augmented pipelines for travel planning by integrating 3+ external APIs for itinerary generation, destination recommendations, and weather-aware adjustments.",
-      "Architected a stateful multi-turn conversation system with orchestrated decision-making, improving response relevance across complex user queries.",
+      "Built tool-augmented pipelines for travel planning by integrating 3+ external APIs for itinerary generation, destination recommendations, and weather-aware adjustments.",
+      "Architected a stateful multi-turn conversation system with orchestrated decision-making, improving response relevance across complex user queries across 500+ interactions.",
       "Engineered modular Python-based tool calling and workflow orchestration, enabling scalable travel planning with structured outputs and <400ms response latency.",
     ],
   },
@@ -48,9 +62,9 @@ const experiences = [
     glow: "rgba(244,114,182,0.15)",
     tech: ["Flask", "REST APIs", "OAuth2", "Python"],
     bullets: [
-      "Built and optimised RESTful APIs using Flask, improving response time by 30%.",
-      "Collaborated on scalable cloud-based solutions integrating OAuth2 services.",
-      "Partnered with frontend and DevOps teams to integrate APIs into live production systems.",
+      "Built and optimised 5+ RESTful APIs using Flask, reducing average response time by 30%.",
+      "Integrated OAuth2 authentication into cloud-based services, enabling secure third-party login for production users.",
+      "Deployed Flask APIs into live systems via CI/CD pipelines, coordinating integration with frontend and DevOps teams.",
     ],
   },
 ];

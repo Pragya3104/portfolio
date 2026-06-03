@@ -7,19 +7,20 @@ import ScrambleText from "./ScrambleText";
 if (typeof window !== "undefined") gsap.registerPlugin(ScrollTrigger);
 
 const skills = [
-  "Python", "Flask", "FastAPI", "Next.js", "React", "SQL",
-  "MySQL", "MongoDB", "Machine Learning", "Generative AI",
-  "LangGraph", "Scikit-learn", "Pandas", "Git", "Docker",
-  "IBM Cloud", "REST APIs", "CI/CD", "R", "NoSQL",
+  "Python","JavaScript","R", "Flask", "FastAPI", "Next.js", "React", "SQL", "PostgreSQL",
+  "MySQL","NoSQL", "MongoDB", "Machine Learning", "Generative AI",
+  "LangGraph", "Scikit-learn", "Pandas","Hugging Face","Prompt Engineering","OpenAI API",
+  "Git", "Docker",
+  "IBM Cloud", "REST APIs", "CI/CD",
 ];
 
 const tagAccents = ["var(--accent)", "var(--accent2)", "var(--warm)"];
 
 const stats = [
-  { num: 2, suffix: "+", label: "Internships", color: "var(--accent)", glow: "rgba(192,132,252,0.45)" },
+  { num: 3, suffix: "+", label: "Internships", color: "var(--accent)", glow: "rgba(192,132,252,0.45)" },
   { num: 5, suffix: "+", label: "Projects", color: "var(--accent2)", glow: "rgba(34,211,238,0.45)" },
   { num: 12, suffix: "+", label: "APIs Built", color: "var(--warm)", glow: "rgba(244,114,182,0.45)" },
-  { num: 2, suffix: "×", label: "IBM Certs", color: "var(--accent)", glow: "rgba(192,132,252,0.45)" },
+  { num: 1, suffix: "×", label: "Freelance Client", color: "var(--accent)", glow: "rgba(192,132,252,0.45)" },
 ];
 
 export default function About() {
@@ -98,15 +99,15 @@ export default function About() {
             about_me.txt • 3 lines
           </div>
           <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "clamp(15px, 1.8vw, 22px)", lineHeight: 1.7, color: "var(--text)", marginBottom: 28 }}>
-            <span style={{ color: "var(--accent)" }}>// </span>
-            Final-year CS student @ SRM University.<br />
-            Specialising in <span style={{ color: "var(--accent2)", textShadow: "0 0 8px rgba(34,211,238,0.5)" }}>Data Science & AI</span>.
+            <span style={{ color: "var(--accent)" }}>{"// "}</span>
+            B.Tech CS Graduate.<br />
+            Specialising in <span style={{ color: "var(--accent2)", textShadow: "0 0 8px rgba(34,211,238,0.5)" }}>AI Engineering & Full-Stack Development</span>.
           </p>
           <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 13, color: "var(--muted)", lineHeight: 1.9, marginBottom: 20 }}>
-            Shipped production AI systems at Infosys Springboard, Edunet Foundation, and Xyronix Labs. From multi-turn LLM agents to full-stack analytics dashboards tracking 1,000+ study sessions.
+            Shipped production AI systems at Infosys Springboard, Edunet Foundation, and Xyronix Labs — and built an AI paper generation agent for an international client. From multi-turn LLM agents to full-stack analytics platforms tracking 1,000+ study sessions.
           </p>
           <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 13, color: "var(--muted)", lineHeight: 1.9 }}>
-            I care about systems that work at scale — clean APIs, reproducible pipelines, and code that future-you won&apos;t hate.
+            I care about the full journey — clean APIs, intelligent backends, and interfaces real users can actually open. Code that works in production, not just notebooks.
           </p>
           <div style={{ marginTop: 36, display: "flex", gap: 12 }}>
             <a href="mailto:pragyajha314@gmail.com" style={{
@@ -118,7 +119,7 @@ export default function About() {
               onMouseEnter={e => { e.currentTarget.style.background = "var(--accent)"; e.currentTarget.style.color = "var(--bg)"; e.currentTarget.style.boxShadow = "0 0 24px rgba(192,132,252,0.5)"; }}
               onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "var(--accent)"; e.currentTarget.style.boxShadow = "0 0 8px rgba(192,132,252,0.2)"; }}
             >[send_message]</a>
-            <a href="https://github.com/Pragya314" target="_blank" rel="noopener noreferrer" style={{
+            <a href="https://github.com/Pragya3104" target="_blank" rel="noopener noreferrer" style={{
               padding: "9px 22px", border: "1px solid var(--border)",
               color: "var(--muted)", textDecoration: "none", fontSize: 11,
               letterSpacing: "0.08em", transition: "all 0.2s",
