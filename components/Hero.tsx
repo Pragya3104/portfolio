@@ -61,7 +61,7 @@ export default function Hero({ ready, onTerminalOpen }: { ready: boolean; onTerm
       // Text content drifts slightly with mouse
       gsap.to(".hero-text-content", { x: mx * 8, y: my * 6, duration: 1.2, ease: "power2.out", overwrite: "auto" });
       // Photo moves more, keeps 100px right offset
-      gsap.to(".hero-photo-frame", { x: mx * 18 + 100, y: my * 12, duration: 1, ease: "power2.out", overwrite: "auto" });
+      gsap.to(".hero-photo-frame", { x: mx * 18 , y: my * 12, duration: 1, ease: "power2.out", overwrite: "auto" });
     };
 
     const onMouse = (e: MouseEvent) => {
