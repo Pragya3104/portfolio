@@ -100,7 +100,7 @@ export default function About() {
           </div>
           <p style={{ fontFamily: "'DM Mono', monospace", fontSize: "clamp(15px, 1.8vw, 22px)", lineHeight: 1.7, color: "var(--text)", marginBottom: 28 }}>
             <span style={{ color: "var(--accent)" }}>{"// "}</span>
-            B.Tech CS Graduate.<br />
+            B.Tech CSE Graduate.<br />
             Specialising in <span style={{ color: "var(--accent2)", textShadow: "0 0 8px rgba(34,211,238,0.5)" }}>AI Engineering & Full-Stack Development</span>.
           </p>
           <p style={{ fontFamily: "'DM Mono', monospace", fontSize: 13, color: "var(--muted)", lineHeight: 1.9, marginBottom: 20 }}>

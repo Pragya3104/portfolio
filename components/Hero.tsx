@@ -199,7 +199,7 @@ export default function Hero({ ready, onTerminalOpen }: { ready: boolean; onTerm
             <span style={{ color: "var(--accent)", textShadow: "0 0 14px rgba(192,132,252,0.55)" }}>
               AI_ENGINEER
             </span>
-            <span style={{ color: "var(--muted)", margin: "0 16px" }}>//</span>
+            <span style={{ color: "var(--muted)", margin: "0 16px" }}>{"//"}</span>
             <span style={{ color: "var(--accent2)", textShadow: "0 0 14px rgba(34,211,238,0.55)" }}>
               FULL_STACK_DEV
             </span>
@@ -212,7 +212,7 @@ export default function Hero({ ready, onTerminalOpen }: { ready: boolean; onTerm
             {[
               { label: "STATUS", value: "OPEN TO WORK", highlight: true },
               { label: "LOCATION", value: "DELHI, IN", highlight: false },
-              { label: "SPECIALIZATION", value: "AI / ML / APIs", highlight: false },
+              { label: "SPECIALIZATION", value: "GEN_AI / FULL_STACK / NLP", highlight: false },
             ].map((item, i) => (
               <div key={i} className="hero-meta-line" style={{
                 padding: "20px 0",
@@ -222,13 +222,14 @@ export default function Hero({ ready, onTerminalOpen }: { ready: boolean; onTerm
                 opacity: 0,
               }}>
                 <div style={{ fontSize: 9, letterSpacing: "0.2em", color: "var(--muted)", marginBottom: 8, textTransform: "uppercase" }}>
-                  // {item.label}
+                  {"//"} {item.label}
                 </div>
                 <div style={{
                   fontSize: "clamp(11px, 1.2vw, 16px)", fontWeight: 700,
                   color: item.highlight ? "var(--accent)" : "var(--text)",
                   textShadow: item.highlight ? "0 0 10px var(--accent)" : "none",
                   letterSpacing: "0.05em",
+                  whiteSpace: "nowrap",
                 }}>
                   {item.highlight && (
                     <span style={{ marginRight: 8, animation: "pulse-glow 2s ease-in-out infinite" }}>●</span>

@@ -85,7 +85,7 @@ export default function Contact() {
       }}>
         <div>
           <div style={{ fontSize: 11, color: "var(--muted)", marginBottom: 16, letterSpacing: "0.1em" }}>
-            // ready to receive transmissions
+            {"//"} ready to receive transmissions
           </div>
           <h2 style={{
             fontFamily: "'Playfair Display', serif",
@@ -116,7 +116,7 @@ export default function Contact() {
           <div style={{ color: "var(--accent2)", marginBottom: 8, textShadow: "0 0 8px var(--accent2)", animation: "pulse-glow 2s ease-in-out infinite" }}>
             ● SYSTEM_STATUS: ONLINE
           </div>
-          <div>OPEN_TO: INTERNSHIPS</div>
+          <div>OPEN_TO: FULL-TIME</div>
           <div>OPEN_TO: FREELANCE</div>
           <div>OPEN_TO: COLLABS</div>
           <div style={{ marginTop: 8, color: "var(--accent)", fontWeight: 700 }}>AVAIL: IMMEDIATE</div>
@@ -231,7 +231,7 @@ function ContactCard({ link: l, big, onCopy }: { link: typeof links[0]; big?: bo
         $ {l.cmd} {l.label.toLowerCase()}
       </div>
       <div>
-        <div style={{ fontSize: 9, letterSpacing: "0.15em", color: "var(--muted)", marginBottom: 6 }}>// {l.label}</div>
+        <div style={{ fontSize: 9, letterSpacing: "0.15em", color: "var(--muted)", marginBottom: 6 }}>{"//"} {l.label}</div>
         <div style={{
           fontFamily: "'DM Mono', monospace",
           fontSize: big ? 16 : 13, fontWeight: 700,
