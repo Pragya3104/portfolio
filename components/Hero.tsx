@@ -148,7 +148,7 @@ export default function Hero({ ready, onTerminalOpen }: { ready: boolean; onTerm
       <div style={{
         maxWidth: 1200, width: "100%",
         display: "flex", alignItems: "center",
-        justifyContent: "space-between", gap: 60,
+        justifyContent: "space-between", gap:"clamp(20px, 4vw, 60px)",
       }}>
         {/* Left — text content, parallax layer */}
         <div className="hero-text-content" style={{ flex: 1, minWidth: 0 }}>
@@ -288,7 +288,7 @@ export default function Hero({ ready, onTerminalOpen }: { ready: boolean; onTerm
         </div>
 
         {/* Right — 3D orbital photo frame, parallax layer */}
-        <div className="hero-photo-frame" style={{ flexShrink: 0, position: "relative", width: 300, height: 300 }}>
+        <div className="hero-photo-frame" style={{ flexShrink: 0, position: "relative", width: "clamp(220px, 22vw, 360px)", height: "clamp(220px, 22vw, 360px)" }}>
           {/* Orbital ring 1 — wide, nearly horizontal, purple */}
           <div style={{
             position: "absolute", inset: -28,
