@@ -64,7 +64,7 @@ export default function Navbar({ onTerminalOpen }: { onTerminalOpen: () => void 
     <>
       <nav ref={navRef} style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-        padding: "16px 40px",
+        padding: "16px clamp(12px, 2vw, 40px)",
         display: "flex", justifyContent: "space-between", alignItems: "center",
         borderBottom: `1px solid ${scrolled ? "var(--border-bright)" : "var(--border)"}`,
         background: scrolled ? "rgba(4,0,14,0.92)" : "transparent",
@@ -72,7 +72,7 @@ export default function Navbar({ onTerminalOpen }: { onTerminalOpen: () => void 
         transition: "all 0.3s",
       }}>
         <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <span style={{ color: "var(--muted)", fontSize: 11, letterSpacing: "0.08em" }}>root@portfolio:~$</span>
+          <span style={{ color: "var(--muted)", fontSize: "clamp(8px, 0.8vw, 11px)", letterSpacing: "0.08em" }}>root@portfolio:~$</span>
           <a href="#" style={{
             fontFamily: "'DM Mono', monospace", fontSize: 16, fontWeight: 700,
             color: accentColor, textDecoration: "none",
@@ -82,7 +82,7 @@ export default function Navbar({ onTerminalOpen }: { onTerminalOpen: () => void 
         </div>
 
         {/* Desktop links */}
-        <ul className="nav-links" style={{ display: "flex", gap: 28, listStyle: "none", alignItems: "center" }}>
+        <ul className="nav-links" style={{ display: "flex", gap: "clamp(8px, 1.5vw, 28px)", listStyle: "none", alignItems: "center" }}>
           {links.map((l, i) => {
             const sectionId = l.href.slice(1);
             const isActive  = activeSection === sectionId;
@@ -91,7 +91,7 @@ export default function Navbar({ onTerminalOpen }: { onTerminalOpen: () => void 
               <li key={l.label}>
                 <a href={l.href} style={{
                   color: isActive ? linkAccent : "var(--muted)",
-                  textDecoration: "none", fontSize: 11,
+                  textDecoration: "none", fontSize: "clamp(8px, 0.8vw, 11px)",
                   letterSpacing: "0.08em", transition: "all 0.25s",
                   textShadow: isActive ? `0 0 8px ${linkAccent}` : "none",
                 }}
@@ -126,8 +126,8 @@ export default function Navbar({ onTerminalOpen }: { onTerminalOpen: () => void 
 
           <li>
             <a ref={hireMeRef} href="mailto:pragyajha314@gmail.com" style={{
-              display: "inline-block", padding: "7px 18px",
-              border: "1px solid var(--accent)", color: "var(--accent)", fontSize: 11,
+              display: "inline-block", padding: "clamp(4px, 0.5vw, 7px) clamp(8px, 1vw, 18px)",
+              border: "1px solid var(--accent)", color: "var(--accent)", fontSize: "clamp(8px, 0.8vw, 11px)",
               textDecoration: "none", transition: "all 0.2s", background: "transparent",
               boxShadow: "0 0 8px rgba(192,132,252,0.2), inset 0 0 8px rgba(192,132,252,0.05)",
               letterSpacing: "0.08em",
@@ -139,7 +139,7 @@ export default function Navbar({ onTerminalOpen }: { onTerminalOpen: () => void 
         </ul>
 
         <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-          <div style={{ fontSize: 10, color: "var(--muted)", letterSpacing: "0.1em", minWidth: 72, textAlign: "right" }}>
+          <div style={{ fontSize: "clamp(7px, 0.7vw, 10px)", color: "var(--muted)", letterSpacing: "0.1em", minWidth: 72, textAlign: "right" }}>
             Time: {time}
           </div>
         </div>
