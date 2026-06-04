@@ -79,7 +79,7 @@ export default function Services() {
         <span style={{ color: "var(--accent)", fontSize: 11, opacity: 0.6 }}>$</span>
         <span style={{ color: "var(--muted)", fontSize: 11 }}>ps aux |</span>
         <span style={{ color: "var(--accent)", fontSize: 13, fontWeight: 700, letterSpacing: "0.1em", textShadow: "0 0 8px var(--accent)" }}>
-          <ScrambleText text="grep services" />
+          <ScrambleText text="./Services/" />
         </span>
         <div style={{ flex: 1, height: 1, background: "linear-gradient(90deg, var(--border-bright), transparent)" }} />
         <span style={{ color: "var(--muted)", fontSize: 10 }}>02</span>
