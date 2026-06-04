@@ -60,7 +60,6 @@ const COMMANDS: Record<string, string[]> = {
     "Email    : pragyajha314@gmail.com",
     "GitHub   : github.com/Pragya3104",
     "LinkedIn : linkedin.com/in/pragya-jha-a6b328250",
-    "Phone    : +91 8700019478",
     "",
     "Status   : ● OPEN TO FULL-TIME / FREELANCE / COLLABS",
   ],

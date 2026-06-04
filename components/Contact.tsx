@@ -11,7 +11,6 @@ const links = [
   { cmd: "mail", label: "EMAIL", value: "pragyajha314@gmail.com", href: "mailto:pragyajha314@gmail.com", accent: "var(--accent)", glow: "rgba(139, 70, 208, 0.18)" },
   { cmd: "open", label: "LINKEDIN", value: "pragya-jha", href: "https://linkedin.com/in/pragya-jha-a6b328250/", accent: "var(--accent2)", glow: "rgba(34,211,238,0.15)" },
   { cmd: "git", label: "GITHUB", value: "Pragya3104", href: "https://github.com/Pragya3104", accent: "var(--accent)", glow: "rgba(192,132,252,0.18)" },
-  { cmd: "call", label: "PHONE", value: "+91 8700019478", href: "tel:+918700019478", accent: "var(--warm)", glow: "rgba(244,114,182,0.15)" },
 ];
 
 export default function Contact() {
@@ -105,7 +104,6 @@ export default function Contact() {
           </h2>
         </div>
 
-        {/* Status box — now with cyan border */}
         <div style={{
           fontFamily: "'DM Mono', monospace", fontSize: 11, color: "var(--muted)",
           textAlign: "right", lineHeight: 2.2,
@@ -128,39 +126,37 @@ export default function Contact() {
         <ContactCard link={links[1]} onCopy={copy} />
         <ContactCard link={links[2]} onCopy={copy} />
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 2 }}>
-        <ContactCard link={links[3]} onCopy={copy} />
-        <div className="contact-el" style={{
-          border: "1px solid var(--border-bright)",
-          borderLeft: "3px solid var(--accent)",
-          padding: "32px 36px",
-          background: "rgba(11, 4, 33, 0.55)",
-          backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)",
-          display: "flex", alignItems: "center", justifyContent: "space-between", gap: 24,
-          boxShadow: "0 4px 28px rgba(0,0,0,0.45), 0 0 28px rgba(192,132,252,0.07), inset 0 1px 0 rgba(255,255,255,0.06)",
-        }}>
-          <div>
-            <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 18, fontWeight: 700, color: "var(--text)", marginBottom: 8 }}>
-              Ready to build?
-            </div>
-            <div style={{ fontSize: 12, color: "var(--muted)" }}>AI systems · full products · Applications</div>
+
+      {/* CTA banner — full width, no links[3] */}
+      <div className="contact-el" style={{
+        border: "1px solid var(--border-bright)",
+        borderLeft: "3px solid var(--accent)",
+        padding: "32px 36px",
+        background: "rgba(11, 4, 33, 0.55)",
+        backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)",
+        display: "flex", alignItems: "center", justifyContent: "space-between", gap: 24,
+        boxShadow: "0 4px 28px rgba(0,0,0,0.45), 0 0 28px rgba(192,132,252,0.07), inset 0 1px 0 rgba(255,255,255,0.06)",
+      }}>
+        <div>
+          <div style={{ fontFamily: "'DM Mono', monospace", fontSize: 18, fontWeight: 700, color: "var(--text)", marginBottom: 8 }}>
+            Ready to build?
           </div>
-          <a ref={ctaRef} href="mailto:pragyajha314@gmail.com" style={{
-            display: "inline-block",
-            padding: "12px 28px",
-            border: "1px solid var(--accent)", color: "var(--accent)",
-            textDecoration: "none", fontSize: 12, letterSpacing: "0.08em",
-            transition: "background 0.2s, color 0.2s, box-shadow 0.2s", whiteSpace: "nowrap",
-            fontFamily: "'DM Mono', monospace",
-            boxShadow: "0 0 12px rgba(192,132,252,0.25)",
-          }}
-            onMouseEnter={e => { e.currentTarget.style.background = "var(--accent)"; e.currentTarget.style.color = "var(--bg)"; e.currentTarget.style.boxShadow = "0 0 32px rgba(192,132,252,0.55)"; }}
-            onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "var(--accent)"; e.currentTarget.style.boxShadow = "0 0 12px rgba(192,132,252,0.25)"; }}
-          >[INITIATE_CONTACT]</a>
+          <div style={{ fontSize: 12, color: "var(--muted)" }}>AI systems · full products · Applications</div>
         </div>
+        <a ref={ctaRef} href="mailto:pragyajha314@gmail.com" style={{
+          display: "inline-block",
+          padding: "12px 28px",
+          border: "1px solid var(--accent)", color: "var(--accent)",
+          textDecoration: "none", fontSize: 12, letterSpacing: "0.08em",
+          transition: "background 0.2s, color 0.2s, box-shadow 0.2s", whiteSpace: "nowrap",
+          fontFamily: "'DM Mono', monospace",
+          boxShadow: "0 0 12px rgba(192,132,252,0.25)",
+        }}
+          onMouseEnter={e => { e.currentTarget.style.background = "var(--accent)"; e.currentTarget.style.color = "var(--bg)"; e.currentTarget.style.boxShadow = "0 0 32px rgba(192,132,252,0.55)"; }}
+          onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "var(--accent)"; e.currentTarget.style.boxShadow = "0 0 12px rgba(192,132,252,0.25)"; }}
+        >[INITIATE_CONTACT]</a>
       </div>
 
-      {/* Toast */}
       {toast && (
         <div style={{
           position: "fixed", bottom: 32, left: "50%", transform: "translateX(-50%)",
@@ -179,7 +175,6 @@ export default function Contact() {
         @media (max-width: 900px) {
           #contact { padding: 80px 20px 60px !important; }
           #contact > div[style*="grid-template-columns: 2fr"] { grid-template-columns: 1fr !important; }
-          #contact > div[style*="grid-template-columns: 1fr 2fr"] { grid-template-columns: 1fr !important; }
           #contact > div[style*="grid-template-columns: 1fr auto"] { grid-template-columns: 1fr !important; }
         }
         @keyframes slideUp {
@@ -195,7 +190,6 @@ function ContactCard({ link: l, big, onCopy }: { link: typeof links[0]; big?: bo
   const [hovered, setHovered] = useState(false);
 
   const handleClick = (e: React.MouseEvent) => {
-    // Copy copyable values (email, phone) — let URLs open normally
     if (l.href.startsWith("mailto:") || l.href.startsWith("tel:")) {
       e.preventDefault();
       onCopy(l.value, l.label);

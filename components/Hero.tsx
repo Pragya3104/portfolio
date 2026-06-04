@@ -53,15 +53,11 @@ export default function Hero({ ready, onTerminalOpen }: { ready: boolean; onTerm
     const apply = () => {
       const { x: mx, y: my } = mouse;
       const sy = window.scrollY;
-      // Orbs: scroll Y + mouse XY
       if (orb1Ref.current) gsap.to(orb1Ref.current, { x: mx * 35, y: sy * 0.28 + my * 25, duration: 1.5, ease: "power2.out", overwrite: "auto" });
       if (orb2Ref.current) gsap.to(orb2Ref.current, { x: mx * -28, y: -sy * 0.18 + my * -18, duration: 1.5, ease: "power2.out", overwrite: "auto" });
-      // Grid drifts opposite to mouse
       gsap.to(".hero-grid", { x: mx * -10, y: my * -8, duration: 2, ease: "power2.out", overwrite: "auto" });
-      // Text content drifts slightly with mouse
       gsap.to(".hero-text-content", { x: mx * 8, y: my * 6, duration: 1.2, ease: "power2.out", overwrite: "auto" });
-      // Photo moves more, keeps 100px right offset
-      gsap.to(".hero-photo-frame", { x: mx * 18 , y: my * 12, duration: 1, ease: "power2.out", overwrite: "auto" });
+      gsap.to(".hero-photo-frame", { x: mx * 18, y: my * 12, duration: 1, ease: "power2.out", overwrite: "auto" });
     };
 
     const onMouse = (e: MouseEvent) => {
@@ -97,7 +93,6 @@ export default function Hero({ ready, onTerminalOpen }: { ready: boolean; onTerm
       }, 5000 + Math.random() * 6000);
     };
 
-    // First glitch after 2–4s
     const init = setTimeout(loop, 2000 + Math.random() * 2000);
     return () => {
       alive = false;
@@ -148,7 +143,7 @@ export default function Hero({ ready, onTerminalOpen }: { ready: boolean; onTerm
       <div style={{
         maxWidth: 1200, width: "100%",
         display: "flex", alignItems: "center",
-        justifyContent: "space-between", gap:"clamp(20px, 4vw, 60px)",
+        justifyContent: "space-between", gap: 60,
       }}>
         {/* Left — text content, parallax layer */}
         <div className="hero-text-content" style={{ flex: 1, minWidth: 0 }}>
@@ -168,16 +163,19 @@ export default function Hero({ ready, onTerminalOpen }: { ready: boolean; onTerm
             className={`hero-name${nameGlitching ? " hero-name-glitch" : ""}`}
             style={{
               fontFamily: "'Playfair Display', serif",
-              fontSize: "clamp(48px, 9vw, 140px)",
-              fontWeight: 800, lineHeight: 0.88, letterSpacing: "-0.04em",
+              fontSize: "clamp(48px, 7vw, 120px)",
+              fontWeight: 800, lineHeight: 0.92, letterSpacing: "-0.04em",
               background: "linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%)",
               WebkitBackgroundClip: "text",
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
-              minHeight: "1.1em",
+              minHeight: "2.2em",
+              whiteSpace: "pre-line",
             }}
           >
-            {typedName}
+            {typedName.length <= 6
+              ? typedName
+              : typedName.slice(0, 6) + "\n" + typedName.slice(7)}
             {ready && (
               <span style={{
                 display: "inline-block", width: "0.08em", height: "0.85em",
@@ -241,54 +239,68 @@ export default function Hero({ ready, onTerminalOpen }: { ready: boolean; onTerm
           </div>
 
           {/* Terminal CTA */}
-          <button
-            onClick={onTerminalOpen}
-            style={{
-              marginTop: 32, display: "flex", alignItems: "center", gap: 12,
-              background: "rgba(11,4,33,0.65)",
-              backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)",
-              border: "1px solid var(--border)",
-              borderLeft: "3px solid var(--accent2)",
-              padding: "13px 22px",
-              cursor: "none", width: "fit-content",
-              transition: "all 0.25s",
-              boxShadow: "0 4px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.04)",
-              opacity: ready ? 1 : 0,
-              transform: ready ? "none" : "translateY(10px)",
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.borderLeftColor = "var(--accent2)";
-              e.currentTarget.style.boxShadow = "0 4px 28px rgba(0,0,0,0.4), 0 0 16px rgba(34,211,238,0.15), inset 0 1px 0 rgba(255,255,255,0.06)";
-              e.currentTarget.style.background = "rgba(22,10,56,0.75)";
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.boxShadow = "0 4px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.04)";
-              e.currentTarget.style.background = "rgba(11,4,33,0.65)";
-            }}
-          >
-            <span style={{ color: "var(--accent2)", fontSize: 11, opacity: 0.7 }}>$</span>
-            <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, color: "var(--muted)", letterSpacing: "0.06em" }}>
-              ./interactive_terminal.sh
-            </span>
-            <span style={{
-              display: "inline-block", width: 7, height: 14,
-              background: "var(--accent2)", marginLeft: 2,
-              animation: "blink 1s step-end infinite",
-              boxShadow: "0 0 6px var(--accent2)",
-            }} />
-            <span style={{
-              marginLeft: 12, fontSize: 9, color: "var(--muted)",
-              letterSpacing: "0.1em", opacity: 0.6,
-              fontFamily: "'DM Mono', monospace",
-              borderLeft: "1px solid var(--border)", paddingLeft: 12,
-            }}>
-              click or press `
-            </span>
-          </button>
+          <div style={{ display: "flex", alignItems: "stretch", gap: 20, marginTop: 32 }}>
+            <button
+              onClick={onTerminalOpen}
+              style={{
+                display: "flex", alignItems: "center", gap: 12,
+                background: "rgba(11,4,33,0.65)",
+                backdropFilter: "blur(10px)", WebkitBackdropFilter: "blur(10px)",
+                border: "1px solid var(--border)",
+                borderLeft: "3px solid var(--accent2)",
+                padding: "13px 36px",
+                cursor: "none", width: "fit-content",
+                transition: "all 0.25s",
+                boxShadow: "0 4px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.04)",
+                opacity: ready ? 1 : 0,
+                transform: ready ? "none" : "translateY(10px)",
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.borderLeftColor = "var(--accent2)";
+                e.currentTarget.style.boxShadow = "0 4px 28px rgba(0,0,0,0.4), 0 0 16px rgba(34,211,238,0.15), inset 0 1px 0 rgba(255,255,255,0.06)";
+                e.currentTarget.style.background = "rgba(22,10,56,0.75)";
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.boxShadow = "0 4px 20px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.04)";
+                e.currentTarget.style.background = "rgba(11,4,33,0.65)";
+              }}
+            >
+              <span style={{ color: "var(--accent2)", fontSize: 11, opacity: 0.7 }}>$</span>
+              <span style={{ fontFamily: "'DM Mono', monospace", fontSize: 11, color: "var(--muted)", letterSpacing: "0.06em" }}>
+                ./interactive_terminal.sh
+              </span>
+              <span style={{
+                display: "inline-block", width: 7, height: 14,
+                background: "var(--accent2)", marginLeft: 2,
+                animation: "blink 1s step-end infinite",
+                boxShadow: "0 0 6px var(--accent2)",
+              }} />
+              <span style={{
+                marginLeft: 12, fontSize: 9, color: "var(--muted)",
+                letterSpacing: "0.1em", opacity: 0.6,
+                fontFamily: "'DM Mono', monospace",
+                borderLeft: "1px solid var(--border)", paddingLeft: 12,
+              }}>
+                click or press `
+              </span>
+            </button>
+
+            {/* Big glowing arrow */}
+            <span
+              className="cta-arrow"
+              style={{
+                fontSize: 52, lineHeight: 1,
+                color: "var(--accent2)",
+                display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 10,
+                opacity: ready ? 1 : 0,
+                transition: "opacity 0.6s 0.6s",
+              }}
+            >←</span>
+          </div>
         </div>
 
         {/* Right — 3D orbital photo frame, parallax layer */}
-        <div className="hero-photo-frame" style={{ flexShrink: 0, position: "relative", width: "clamp(220px, 22vw, 360px)", height: "clamp(220px, 22vw, 360px)" }}>
+        <div className="hero-photo-frame" style={{ flexShrink: 0, position: "relative", width: "clamp(200px, 25vw, 380px)", height: "clamp(200px, 25vw, 380px)" }}>
           {/* Orbital ring 1 — wide, nearly horizontal, purple */}
           <div style={{
             position: "absolute", inset: -28,
@@ -330,7 +342,6 @@ export default function Hero({ ready, onTerminalOpen }: { ready: boolean; onTerm
             position: "relative", zIndex: 2,
             background: "var(--surface2)",
           }}>
-            {/* Replace /profile.jpg with your photo */}
             <img
               src="/profile.jpg"
               alt="Pragya Jha"
@@ -355,6 +366,13 @@ export default function Hero({ ready, onTerminalOpen }: { ready: boolean; onTerm
       </div>
 
       <style>{`
+        .cta-arrow {
+          animation: arrow-glow 1.8s ease-in-out infinite;
+        }
+        @keyframes arrow-glow {
+          0%, 100% { opacity: 0.15; text-shadow: none; transform: translateX(0); }
+          50% { opacity: 1; text-shadow: 0 0 16px var(--accent2), 0 0 32px rgba(34,211,238,0.6), 0 0 48px rgba(34,211,238,0.3); transform: translateX(-6px); }
+        }
         @media (max-width: 900px) {
           #hero { padding: 100px 20px 60px !important; }
           #hero > div[style*="space-between"] { flex-direction: column-reverse !important; gap: 40px !important; }
