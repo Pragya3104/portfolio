@@ -170,7 +170,7 @@ export default function Hero({ ready, onTerminalOpen }: { ready: boolean; onTerm
               WebkitTextFillColor: "transparent",
               backgroundClip: "text",
               minHeight: "2.2em",
-              whiteSpace: "pre-line",
+              alignItems: "center", display: "flex",
             }}
           >
             {typedName.length <= 6
@@ -281,7 +281,7 @@ export default function Hero({ ready, onTerminalOpen }: { ready: boolean; onTerm
                 fontFamily: "'DM Mono', monospace",
                 borderLeft: "1px solid var(--border)", paddingLeft: 12,
               }}>
-                click or press `
+                click to launch terminal`
               </span>
             </button>
 
