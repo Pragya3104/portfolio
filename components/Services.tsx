@@ -17,14 +17,14 @@ const services = [
   {
     cmd: "serve backend_apis --prod",
     name: "Backend & API Dev",
-    desc: "Scalable REST APIs with FastAPI and Flask. 12+ production APIs shipped covering auth, analytics, and data management.",
-    tools: ["FastAPI", "Flask", "PostgreSQL", "MongoDB", "REST"],
+    desc: "Scalable REST APIs with FastAPI and Django. Multiple production APIs shipped covering auth, analytics, and data management.",
+    tools: ["FastAPI", "Django", "PostgreSQL", "MongoDB", "REST"],
     accent: "var(--accent2)", glow: "rgba(34,211,238,0.15)",
   },
   {
     cmd: "deploy llm_agent --stream",
     name: "LLM & Agentic Systems",
-    desc: "Multi-turn conversational agents with tool-calling, memory, and live API integration. LangGraph orchestration, React architecture, OpenAI and watsonx.ai. Sub-400ms response latency in production.",
+    desc: "Multi-turn conversational agents with tool-calling, memory, and live API integration. LangGraph orchestration, React architecture, OpenAI and watsonx.ai.",
     tools: ["LangGraph", "watsonx.ai", "LLM", "React", "Prompting"],
     accent: "var(--warm)", glow: "rgba(244,114,182,0.15)",
   },

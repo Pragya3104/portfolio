@@ -7,11 +7,10 @@ import ScrambleText from "./ScrambleText";
 if (typeof window !== "undefined") gsap.registerPlugin(ScrollTrigger);
 
 const skills = [
-  "Python","JavaScript","R", "Flask", "FastAPI", "Next.js", "React", "SQL", "PostgreSQL",
-  "MySQL","NoSQL", "MongoDB", "Machine Learning", "Generative AI",
-  "LangGraph", "Scikit-learn", "Pandas","Hugging Face","Prompt Engineering","OpenAI API",
-  "Git", "Docker",
-  "IBM Cloud", "REST APIs", "CI/CD",
+  "Python","JavaScript","R", "Flask", "FastAPI", "Next.js", "React","TypeScript", "SQL", "PostgreSQL",
+  "MySQL","NoSQL", "MongoDB", "Machine Learning", "Generative AI", "NLP",
+  "LangGraph", "Scikit-learn", "Pandas","Hugging Face","Prompt Engineering", "Docker",
+  "IBM Cloud", "REST APIs", "CI/CD", "Seaborn", "Matplotlib", "Linux"
 ];
 
 const tagAccents = ["var(--accent)", "var(--accent2)", "var(--warm)"];
@@ -19,7 +18,7 @@ const tagAccents = ["var(--accent)", "var(--accent2)", "var(--warm)"];
 const stats = [
   { num: 3, suffix: "+", label: "Internships", color: "var(--accent)", glow: "rgba(192,132,252,0.45)" },
   { num: 5, suffix: "+", label: "Projects", color: "var(--accent2)", glow: "rgba(34,211,238,0.45)" },
-  { num: 12, suffix: "+", label: "APIs Built", color: "var(--warm)", glow: "rgba(244,114,182,0.45)" },
+  { num: 5, suffix: "+", label: "Production System", color: "var(--warm)", glow: "rgba(244,114,182,0.45)" },
   { num: 1, suffix: "×", label: "Freelance Client", color: "var(--accent)", glow: "rgba(192,132,252,0.45)" },
 ];
 

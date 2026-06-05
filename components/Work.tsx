@@ -12,7 +12,7 @@ const projects = [
     id: "01", status: "DEPLOYED",
     title: "AI Question Paper Generation System",
     desc: "End-to-end paper generation agent using GPT-4.1 Mini — 50-page syllabus-aligned question papers in under 2 clicks. Full-stack: React frontend, FastAPI backend, deployed for a live coaching centre client in Australia.",
-    tech: ["GPT-4.1 Mini", "React", "FastAPI", "Prompt Engineering"],
+    tech: ["GPT-4.1 Mini", "React", "FastAPI", "Azure"],
     year: "2026",
     accent: "var(--accent2)", glow: "rgba(34,211,238,0.15)",
   },
@@ -27,7 +27,7 @@ const projects = [
   {
     id: "03", status: "SHIPPED",
     title: "Student Analytics Platform",
-    desc: "Full-stack platform built at Infosys tracking 1,000+ study sessions. K-Means clustering on 5+ behavioural features. 12+ REST APIs for auth, analytics, and admin workflows.",
+    desc: "Full-stack platform built at Infosys tracking 1,000+ study sessions. K-Means clustering on 5+ behavioural features. Multiple REST APIs for auth, analytics, and admin workflows.",
     tech: ["FastAPI", "Next.js", "K-Means", "Pandas"],
     year: "2025", github: "https://github.com/tarun0714/Study-Track-AI-based-Student-Study-Habit-Recommender---Infosys.git",
     accent: "var(--accent2)", glow: "rgba(34,211,238,0.15)",
@@ -35,7 +35,7 @@ const projects = [
   {
     id: "04", status: "SHIPPED",
     title: "LLM Travel Planning Agent",
-    desc: "Conversational AI agent built at Edunet with LangGraph orchestration + ReAct architecture. 500+ multi-turn interactions, 3+ external API integrations, <400ms latency.",
+    desc: "Conversational AI agent built at Edunet with LangGraph orchestration + ReAct architecture. 500+ multi-turn interactions, multiple external API integrations.",
     tech: ["IBM watsonx.ai", "LangGraph", "Python"],
     year: "2025", github: "https://github.com/Pragya3104/Travel_ai_agent.git",
     accent: "var(--warm)", glow: "rgba(244,114,182,0.15)",

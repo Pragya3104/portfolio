@@ -1,9 +1,9 @@
 "use client";
 import { useState } from "react";
 import {
-  SiPython, SiFastapi, SiFlask, SiNextdotjs, SiReact,
-  SiMongodb, SiDocker, SiScikitlearn,
-  SiPostgresql, SiJupyter, SiPytorch,
+  SiPython, SiFastapi, SiDjango, SiJavascript, SiTypescript,
+  SiReact, SiNextdotjs, SiTailwindcss,
+  SiPytorch, SiPostgresql, SiMongodb, SiDocker,
 } from "react-icons/si";
 import { HiCpuChip, HiCodeBracket, HiArrowPath, HiSparkles, HiCloud } from "react-icons/hi2";
 import type { IconType } from "react-icons";
@@ -11,20 +11,22 @@ import type { IconType } from "react-icons";
 const items: { name: string; Icon: IconType; accent: string }[] = [
   { name: "Python",          Icon: SiPython,       accent: "var(--accent)"  },
   { name: "FastAPI",         Icon: SiFastapi,      accent: "var(--accent2)" },
-  { name: "Flask",           Icon: SiFlask,        accent: "var(--text)"    },
-  { name: "Next.js",         Icon: SiNextdotjs,    accent: "var(--text)"    },
+  { name: "Django",          Icon: SiDjango,       accent: "var(--accent)"  },
+  { name: "JavaScript",      Icon: SiJavascript,   accent: "var(--warm)"    },
+  { name: "TypeScript",      Icon: SiTypescript,   accent: "var(--accent2)" },
   { name: "React",           Icon: SiReact,        accent: "var(--accent2)" },
+  { name: "Next.js",         Icon: SiNextdotjs,    accent: "var(--text)"    },
+  { name: "Tailwind CSS",    Icon: SiTailwindcss,  accent: "var(--accent)"  },
   { name: "Machine Learning",Icon: HiCpuChip,      accent: "var(--accent)"  },
   { name: "LLM / GenAI",    Icon: HiSparkles,     accent: "var(--warm)"    },
+  { name: "PyTorch",         Icon: SiPytorch,      accent: "var(--warm)"    },
+  { name: "LangGraph",       Icon: HiArrowPath,    accent: "var(--accent2)" },
   { name: "PostgreSQL",      Icon: SiPostgresql,   accent: "var(--accent2)" },
   { name: "MongoDB",         Icon: SiMongodb,      accent: "var(--accent)"  },
-  { name: "Docker",          Icon: SiDocker,       accent: "var(--accent2)" },
-  { name: "IBM Cloud",       Icon: HiCloud,        accent: "var(--warm)"    },
-  { name: "LangGraph",       Icon: HiArrowPath,    accent: "var(--accent2)" },
-  { name: "PyTorch",         Icon: SiPytorch,      accent: "var(--warm)"    },
   { name: "REST APIs",       Icon: HiCodeBracket,  accent: "var(--accent)"  },
-  { name: "Jupyter",         Icon: SiJupyter,      accent: "var(--warm)"    },
-  { name: "Scikit-learn",    Icon: SiScikitlearn,  accent: "var(--accent)"  },
+  { name: "Docker",          Icon: SiDocker,       accent: "var(--accent2)" },
+  { name: "Azure",           Icon: HiCloud,        accent: "var(--accent2)" },
+  { name: "IBM Cloud",       Icon: HiCloud,        accent: "var(--warm)"    },
 ];
 
 export default function Marquee() {

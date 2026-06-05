@@ -14,7 +14,7 @@ const experiences = [
     current: false,
     accent: "var(--warm)",
     glow: "rgba(244,114,182,0.18)",
-    tech: ["Python", "GPT-4.1 MINI",  "REACT",   "FASTAPI",  "REST APIs", "Prompt Engineering", "Git"],
+    tech: ["Python", "GPT-4.1 MINI",  "REACT",   "FASTAPI",  "REST APIs", "Azure"],
     bullets: [
       "Built an end-to-end AI paper generation system using GPT-4.1 Mini and React + FastAPI, producing fully structured 50-page question papers in under 2 clicks.",
       "Engineered prompt pipelines to generate syllabus-aligned, multi-subject papers with configurable difficulty levels and consistent formatting.",
@@ -31,7 +31,7 @@ const experiences = [
     tech: ["FastAPI", "Next.js", "K-Means", "Scikit-learn", "Pandas", "Python"],
     bullets: [
       "Developed a full-stack student analytics platform using FastAPI and Next.js, enabling tracking of 1,000+ study sessions and delivering personalised performance insights.",
-      "Created 12+ REST APIs for managing study sessions, student data, OTP-based authentication, and admin analytics workflows.",
+      "Created multiple REST APIs for managing study sessions, student data, OTP-based authentication, and admin analytics workflows.",
       "Built an ML pipeline using K-Means clustering (K=3) on 5+ behavioural features to segment students into performance categories, improving identification of at-risk students.",
       "Designed a rule-based recommendation engine with 10+ decision rules, producing actionable insights to improve study efficiency and reduce distractions.",
       "Deployed data processing and visualisation pipelines using Pandas, Scikit-learn, and charting tools — supporting real-time dashboards and reducing analysis time by ~30%.",
@@ -48,23 +48,23 @@ const experiences = [
     bullets: [
       "Engineered an LLM-powered conversational AI agent using IBM watsonx.ai, implementing LangGraph-based orchestration with React architecture for reasoning and tool invocation.",
       "Integrated Granite-3-3-8B-Instruct LLM with optimised decoding parameters, enabling context-aware itinerary generation across 500+ multi-turn interactions.",
-      "Built tool-augmented pipelines for travel planning by integrating 3+ external APIs for itinerary generation, destination recommendations, and weather-aware adjustments.",
+      "Built tool-augmented pipelines for travel planning by integrating multiple external APIs for itinerary generation, destination recommendations, and weather-aware adjustments.",
       "Architected a stateful multi-turn conversation system with orchestrated decision-making, improving response relevance across complex user queries across 500+ interactions.",
-      "Engineered modular Python-based tool calling and workflow orchestration, enabling scalable travel planning with structured outputs and <400ms response latency.",
+      "Engineered modular Python-based tool calling and workflow orchestration, enabling extensible travel planning pipelines with clean structured outputs and consistent response quality across diverse query types",
     ],
   },
   {
     role: "SDE Intern",
-    company: "Xyronix Labs",
-    period: "Jan 2025 – Jul 2025",
+    company: "Xyronix Labs Pvt Ltd",
+    period: "Jan 2025 – June 2025",
     current: false,
     accent: "var(--warm)",
     glow: "rgba(244,114,182,0.15)",
-    tech: ["Flask", "REST APIs", "OAuth2", "Python"],
+    tech: ["Django", "REST APIs", "OAuth2", "Python","Azure"],
     bullets: [
-      "Built and optimised 5+ RESTful APIs using Flask, reducing average response time by 30%.",
+      "Developed and maintained multiple RESTful APIs using Django, handling authentication, data retrieval, and third-party service integration.",
       "Integrated OAuth2 authentication into cloud-based services, enabling secure third-party login for production users.",
-      "Deployed Flask APIs into live systems via CI/CD pipelines, coordinating integration with frontend and DevOps teams.",
+      "Deployed APIs into live systems via CI/CD pipelines, coordinating integration with frontend and DevOps teams to validate integration and resolve blockers.",
     ],
   },
 ];
