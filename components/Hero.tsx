@@ -102,7 +102,7 @@ export default function Hero({ ready, onTerminalOpen }: { ready: boolean; onTerm
 
   return (
     <section ref={heroRef} id="hero" style={{
-      minHeight: "100vh", padding: "120px 40px 80px",
+      minHeight: "100vh", padding: "100px 40px 80px",
       display: "flex", flexDirection: "column", justifyContent: "center",
       position: "relative", overflow: "hidden",
     }}>
@@ -164,7 +164,7 @@ export default function Hero({ ready, onTerminalOpen }: { ready: boolean; onTerm
             className={`hero-name${nameGlitching ? " hero-name-glitch" : ""}`}
             style={{
               fontFamily: "'Playfair Display', serif",
-              fontSize: "clamp(48px, 7vw, 120px)",
+              fontSize: "clamp(42px, 6vw, 108px)",
               fontWeight: 800, lineHeight: 0.92, letterSpacing: "-0.04em",
               background: "linear-gradient(135deg, var(--accent) 0%, var(--accent2) 100%)",
               WebkitBackgroundClip: "text",
@@ -301,7 +301,7 @@ export default function Hero({ ready, onTerminalOpen }: { ready: boolean; onTerm
         </div>
 
         {/* Right — 3D orbital photo frame, parallax layer */}
-        <div className="hero-photo-frame" style={{ flexShrink: 0, position: "relative", width: "clamp(220px, 28vw, 380px)", height: "clamp(220px, 28vw, 380px)" }}>
+        <div className="hero-photo-frame" style={{ flexShrink: 0, position: "relative", width: "clamp(200px, 25vw, 340px)", height: "clamp(200px, 25vw, 340px)" }}>
           {/* Orbital ring 1 — wide, nearly horizontal, purple */}
           <div style={{
             position: "absolute", inset: -28,
