@@ -122,9 +122,9 @@ export default function Experience() {
       </div>
 
       {/* Timeline */}
-      <div style={{ position: "relative", paddingLeft: 32 }}>
+      <div className="exp-timeline" style={{ position: "relative", paddingLeft: 32 }}>
         {/* Vertical line */}
-        <div style={{
+        <div className="exp-line" style={{
           position: "absolute", left: 7, top: 8, bottom: 8,
           width: 1,
           background: "linear-gradient(180deg, var(--accent), var(--accent2), var(--warm))",
@@ -142,6 +142,15 @@ export default function Experience() {
         @media (max-width: 900px) {
           #experience { padding: 80px 20px !important; }
         }
+        @media (max-width: 640px) {
+          #experience { padding: 64px 16px !important; }
+          .exp-timeline { padding-left: 24px !important; }
+          .exp-line { left: 4px !important; }
+          .exp-dot { left: -20px !important; width: 10px !important; height: 10px !important; top: 20px !important; }
+          .exp-card { padding: 20px 16px !important; }
+          .exp-tech-tag { font-size: 8px !important; padding: 2px 7px !important; }
+          .exp-bullet { font-size: 11px !important; }
+        }
       `}</style>
     </section>
   );
@@ -151,7 +160,7 @@ function ExperienceCard({ exp: e, last }: { exp: typeof experiences[0]; last: bo
   return (
     <div className="exp-entry" style={{ position: "relative", paddingBottom: last ? 0 : 2 }}>
       {/* Timeline dot */}
-      <div style={{
+      <div className="exp-dot" style={{
         position: "absolute", left: -28, top: 28,
         width: 14, height: 14,
         background: e.current ? e.accent : "transparent",
@@ -162,7 +171,7 @@ function ExperienceCard({ exp: e, last }: { exp: typeof experiences[0]; last: bo
       }} />
 
       {/* Card */}
-      <div style={{
+      <div className="exp-card" style={{
         borderTop: `2px solid ${e.accent}`,
         borderRight: "1px solid var(--border)",
         borderBottom: "1px solid var(--border)",
@@ -200,7 +209,7 @@ function ExperienceCard({ exp: e, last }: { exp: typeof experiences[0]; last: bo
           {e.bullets.map((b, i) => (
             <li key={i} style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
               <span style={{ color: e.accent, flexShrink: 0, fontSize: 10, marginTop: 3, opacity: 0.7 }}>▸</span>
-              <span style={{
+              <span className="exp-bullet" style={{
                 fontFamily: "'DM Mono', monospace", fontSize: 12,
                 color: "var(--muted)", lineHeight: 1.8,
               }}>{b}</span>
@@ -211,7 +220,7 @@ function ExperienceCard({ exp: e, last }: { exp: typeof experiences[0]; last: bo
         {/* Tech tags */}
         <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
           {e.tech.map(t => (
-            <span key={t} style={{
+            <span key={t} className="exp-tech-tag" style={{
               fontSize: 9, letterSpacing: "0.1em", textTransform: "uppercase",
               color: e.accent, border: `1px solid ${e.accent}40`,
               padding: "2px 10px", fontFamily: "'DM Mono', monospace",

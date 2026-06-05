@@ -40,8 +40,9 @@ export default function ParticleField() {
     };
     window.addEventListener("mousemove", onMouse);
 
-    // Spawn particles
-    for (let i = 0; i < 65; i++) {
+    // Fewer particles on mobile for performance
+    const count = window.innerWidth < 640 ? 25 : 65;
+    for (let i = 0; i < count; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,

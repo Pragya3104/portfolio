@@ -121,14 +121,14 @@ export default function Contact() {
         </div>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr", gap: 2, marginBottom: 2 }}>
+      <div className="contact-cards-grid" style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr", gap: 2, marginBottom: 2 }}>
         <ContactCard link={links[0]} big onCopy={copy} />
         <ContactCard link={links[1]} onCopy={copy} />
         <ContactCard link={links[2]} onCopy={copy} />
       </div>
 
       {/* CTA banner — full width, no links[3] */}
-      <div className="contact-el" style={{
+      <div className="contact-el contact-cta" style={{
         border: "1px solid var(--border-bright)",
         borderLeft: "3px solid var(--accent)",
         padding: "32px 36px",
@@ -172,10 +172,17 @@ export default function Contact() {
       )}
 
       <style>{`
-        @media (max-width: 900px) {
+        @media (max-width: 768px) {
           #contact { padding: 80px 20px 60px !important; }
-          #contact > div[style*="grid-template-columns: 2fr"] { grid-template-columns: 1fr !important; }
-          #contact > div[style*="grid-template-columns: 1fr auto"] { grid-template-columns: 1fr !important; }
+          .contact-heading { grid-template-columns: 1fr !important; gap: 24px !important; }
+          .contact-cards-grid { grid-template-columns: 1fr !important; }
+        }
+        @media (max-width: 640px) {
+          #contact { padding: 64px 16px 48px !important; }
+          .contact-heading { grid-template-columns: 1fr !important; gap: 16px !important; }
+          .contact-heading > div:last-child { text-align: left !important; border-width: 1px !important; }
+          .contact-cards-grid { grid-template-columns: 1fr !important; }
+          .contact-cta { flex-direction: column !important; align-items: flex-start !important; gap: 16px !important; }
         }
         @keyframes slideUp {
           from { transform: translateX(-50%) translateY(10px); opacity: 0; }

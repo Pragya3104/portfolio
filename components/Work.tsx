@@ -111,7 +111,7 @@ export default function Work() {
         <span style={{ color: "var(--muted)", fontSize: 10 }}>01</span>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
+      <div className="work-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
         <div className="work-card-main">
           <ProjectCard project={projects[0]} big onOpen={setSelected} />
         </div>
@@ -130,11 +130,17 @@ export default function Work() {
       {selected && <ProjectModal project={selected} onClose={closeModal} />}
 
       <style>{`
-        @media (max-width: 900px) {
+        @media (max-width: 768px) {
           #work { padding: 80px 20px !important; }
-          #work .work-card-main,
-          #work .work-card-stack,
-          #work .work-card-wide { grid-column: 1 !important; }
+          .work-grid { grid-template-columns: 1fr !important; }
+          .work-card-main, .work-card-stack, .work-card-wide { grid-column: 1 !important; }
+          .work-card-wide > div, .work-card-main > div {
+            display: flex !important; flex-direction: column !important;
+            grid-template-columns: unset !important;
+          }
+        }
+        @media (max-width: 640px) {
+          #work { padding: 64px 16px !important; }
         }
       `}</style>
     </section>

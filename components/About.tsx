@@ -80,7 +80,7 @@ export default function About() {
         <span style={{ color: "var(--muted)", fontSize: 10 }}>00</span>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "3fr 2fr", gap: 2 }}>
+      <div className="about-main-grid" style={{ display: "grid", gridTemplateColumns: "3fr 2fr", gap: 2 }}>
         {/* Bio card */}
         <div className="about-bio" style={{
           borderTop: "2px solid var(--accent)",
@@ -193,7 +193,13 @@ export default function About() {
         }
         @media (max-width: 900px) {
           #about { padding: 80px 20px !important; }
-          #about > div > div[style*="3fr"] { grid-template-columns: 1fr !important; }
+          .about-main-grid { grid-template-columns: 1fr !important; }
+        }
+        @media (max-width: 640px) {
+          #about { padding: 64px 16px !important; }
+          .about-main-grid { grid-template-columns: 1fr !important; }
+          .about-stat { padding: 18px 14px !important; }
+          .about-stat > div:first-child { font-size: 36px !important; }
         }
       `}</style>
     </section>

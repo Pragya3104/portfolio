@@ -85,7 +85,7 @@ export default function Services() {
         <span style={{ color: "var(--muted)", fontSize: 10 }}>02</span>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 2, marginBottom: 2 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(240px, 100%), 1fr))", gap: 2, marginBottom: 2 }}>
         {services.map(s => <ServiceCard key={s.name} service={s} />)}
       </div>
 
@@ -93,7 +93,11 @@ export default function Services() {
       <style>{`
         @media (max-width: 900px) {
           #services { padding: 80px 20px !important; }
-          #services > div[style*="1.2fr"] { grid-template-columns: 1fr !important; }
+        }
+        @media (max-width: 640px) {
+          #services { padding: 64px 16px !important; }
+          /* auto-fit already handles stacking but ensure min-width doesn't overflow */
+          #services > div[style*="auto-fit"] { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </section>

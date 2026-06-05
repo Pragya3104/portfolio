@@ -55,9 +55,12 @@ export default function Hero({ ready, onTerminalOpen }: { ready: boolean; onTerm
       const sy = window.scrollY;
       if (orb1Ref.current) gsap.to(orb1Ref.current, { x: mx * 35, y: sy * 0.28 + my * 25, duration: 1.5, ease: "power2.out", overwrite: "auto" });
       if (orb2Ref.current) gsap.to(orb2Ref.current, { x: mx * -28, y: -sy * 0.18 + my * -18, duration: 1.5, ease: "power2.out", overwrite: "auto" });
-      gsap.to(".hero-grid", { x: mx * -10, y: my * -8, duration: 2, ease: "power2.out", overwrite: "auto" });
-      gsap.to(".hero-text-content", { x: mx * 8, y: my * 6, duration: 1.2, ease: "power2.out", overwrite: "auto" });
-      gsap.to(".hero-photo-frame", { x: mx * 18, y: my * 12, duration: 1, ease: "power2.out", overwrite: "auto" });
+      const grid  = document.querySelector(".hero-grid");
+      const text  = document.querySelector(".hero-text-content");
+      const photo = document.querySelector(".hero-photo-frame");
+      if (grid)  gsap.to(grid,  { x: mx * -10, y: my * -8, duration: 2,   ease: "power2.out", overwrite: "auto" });
+      if (text)  gsap.to(text,  { x: mx * 8,   y: my * 6,  duration: 1.2, ease: "power2.out", overwrite: "auto" });
+      if (photo) gsap.to(photo, { x: mx * 18,  y: my * 12, duration: 1,   ease: "power2.out", overwrite: "auto" });
     };
 
     const onMouse = (e: MouseEvent) => {
@@ -204,7 +207,7 @@ export default function Hero({ ready, onTerminalOpen }: { ready: boolean; onTerm
             </span>
           </div>
 
-          <div style={{
+          <div className="hero-meta-grid" style={{
             display: "grid", gridTemplateColumns: "1fr 1fr 1fr",
             gap: 0, marginTop: 60, borderTop: "1px solid var(--border)",
           }}>
@@ -357,8 +360,8 @@ export default function Hero({ ready, onTerminalOpen }: { ready: boolean; onTerm
         </div>
       </div>
 
-      {/* Status items */}
-      <div style={{ position: "absolute", top: 100, right: 40, fontSize: 10, fontFamily: "monospace", textAlign: "right", lineHeight: 2 }}>
+      {/* Status items — hidden on mobile */}
+      <div className="hero-status-items" style={{ position: "absolute", top: 100, right: 40, fontSize: 10, fontFamily: "monospace", textAlign: "right", lineHeight: 2 }}>
         {statusItems.map(s => (
           <div key={s.label} style={{ color: s.color }}>
             <span style={{ opacity: 0.5 }}>▶</span> {s.label}
@@ -376,13 +379,19 @@ export default function Hero({ ready, onTerminalOpen }: { ready: boolean; onTerm
         }
         @media (max-width: 900px) {
           #hero { padding: 100px 24px 60px !important; }
-          #hero > div { flex-direction: column-reverse !important; gap: 40px !important; align-items: center !important; }
-          .hero-photo-frame { width: clamp(180px, 55vw, 280px) !important; height: clamp(180px, 55vw, 280px) !important; }
-          .hero-text-content { width: 100% !important; text-align: left; }
+          #hero > div[style*="space-between"] { flex-direction: column-reverse !important; gap: 40px !important; align-items: center !important; }
+          .hero-photo-frame { width: clamp(180px, 55vw, 260px) !important; height: clamp(180px, 55vw, 260px) !important; transform: none !important; }
+          .hero-text-content { width: 100% !important; }
+          .hero-status-items { display: none !important; }
         }
-        @media (max-width: 480px) {
-          #hero { padding: 90px 16px 60px !important; }
-          .hero-photo-frame { width: clamp(160px, 60vw, 220px) !important; height: clamp(160px, 60vw, 220px) !important; }
+        @media (max-width: 640px) {
+          #hero { padding: 80px 16px 40px !important; }
+          .hero-photo-frame { width: 160px !important; height: 160px !important; transform: none !important; }
+          .hero-meta-grid { grid-template-columns: 1fr !important; }
+          .hero-meta-grid .hero-meta-line { border-right: none !important; border-bottom: 1px solid var(--border); padding: 14px 0 !important; }
+          .hero-meta-grid .hero-meta-line:last-child { border-bottom: none !important; }
+          #hero button[style*="fit-content"] { width: 100% !important; justify-content: flex-start !important; }
+          #hero button[style*="fit-content"] > span:last-child { display: none !important; }
         }
       `}</style>
     </section>

@@ -102,6 +102,39 @@ body::after {
   50% { background-position: 100% 50%; }
 }
 
+/* ── Touch devices: restore native cursor ── */
+@media (pointer: coarse) {
+  body { cursor: auto !important; }
+  a, button { cursor: pointer !important; }
+}
+
+/* ── Hamburger: force hide on desktop, show on mobile ── */
+.nav-hamburger { display: none !important; }
+@media (max-width: 768px) {
+  .nav-hamburger { display: flex !important; }
+  .nav-links     { display: none !important; }
+}
+
+/* ── Section padding: scale down on mobile ── */
+@media (max-width: 768px) {
+  section { padding-top: 80px !important; padding-left: 20px !important; padding-right: 20px !important; }
+}
+@media (max-width: 640px) {
+  section { padding-top: 64px !important; padding-left: 16px !important; padding-right: 16px !important; padding-bottom: 48px !important; }
+}
+
+/* ── Global grid stacking ── */
+@media (max-width: 640px) {
+  .mobile-stack { grid-template-columns: 1fr !important; }
+}
+
+/* ── Minimum touch target size ── */
+@media (pointer: coarse) {
+  a, button { min-height: 44px; min-width: 44px; }
+  .skill-tag { padding: 6px 14px !important; font-size: 11px !important; }
+  .marquee-card { padding: 16px 18px !important; }
+}
+
 /* 3D orbital ring animations */
 @keyframes orbit-1 {
   from { transform: perspective(500px) rotateX(72deg) rotateZ(0deg); }
