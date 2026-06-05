@@ -144,6 +144,7 @@ export default function Hero({ ready, onTerminalOpen }: { ready: boolean; onTerm
         maxWidth: 1200, width: "100%",
         display: "flex", alignItems: "center",
         justifyContent: "space-between", gap: 60,
+        margin: "0 auto",
       }}>
         {/* Left — text content, parallax layer */}
         <div className="hero-text-content" style={{ flex: 1, minWidth: 0 }}>
@@ -188,7 +189,7 @@ export default function Hero({ ready, onTerminalOpen }: { ready: boolean; onTerm
           </h1>
 
           <div style={{
-            marginLeft: "clamp(20px, 8vw, 140px)", marginTop: 14,
+            marginLeft: 0, marginTop: 14,
             fontFamily: "'DM Mono', monospace",
             fontSize: "clamp(12px, 1.6vw, 20px)",
             letterSpacing: "0.15em", textTransform: "uppercase",
@@ -300,7 +301,7 @@ export default function Hero({ ready, onTerminalOpen }: { ready: boolean; onTerm
         </div>
 
         {/* Right — 3D orbital photo frame, parallax layer */}
-        <div className="hero-photo-frame" style={{ flexShrink: 0, position: "relative", width: "clamp(200px, 25vw, 380px)", height: "clamp(200px, 25vw, 380px)" }}>
+        <div className="hero-photo-frame" style={{ flexShrink: 0, position: "relative", width: "clamp(220px, 28vw, 380px)", height: "clamp(220px, 28vw, 380px)" }}>
           {/* Orbital ring 1 — wide, nearly horizontal, purple */}
           <div style={{
             position: "absolute", inset: -28,
@@ -374,9 +375,14 @@ export default function Hero({ ready, onTerminalOpen }: { ready: boolean; onTerm
           50% { opacity: 1; text-shadow: 0 0 16px var(--accent2), 0 0 32px rgba(34,211,238,0.6), 0 0 48px rgba(34,211,238,0.3); transform: translateX(-6px); }
         }
         @media (max-width: 900px) {
-          #hero { padding: 100px 20px 60px !important; }
-          #hero > div[style*="space-between"] { flex-direction: column-reverse !important; gap: 40px !important; }
-          #hero > div[style*="space-between"] > div:last-child { width: 220px !important; height: 220px !important; }
+          #hero { padding: 100px 24px 60px !important; }
+          #hero > div { flex-direction: column-reverse !important; gap: 40px !important; align-items: center !important; }
+          .hero-photo-frame { width: clamp(180px, 55vw, 280px) !important; height: clamp(180px, 55vw, 280px) !important; }
+          .hero-text-content { width: 100% !important; text-align: left; }
+        }
+        @media (max-width: 480px) {
+          #hero { padding: 90px 16px 60px !important; }
+          .hero-photo-frame { width: clamp(160px, 60vw, 220px) !important; height: clamp(160px, 60vw, 220px) !important; }
         }
       `}</style>
     </section>
