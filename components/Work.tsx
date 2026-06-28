@@ -15,6 +15,15 @@ const projects = [
     tech: ["GPT-4.1 Mini", "React", "FastAPI", "Azure"],
     year: "2026",
     accent: "var(--accent2)", glow: "rgba(34,211,238,0.15)",
+    details: {
+      problem: "A test-prep client needed NAPLAN / OC / Selective-school papers generated on demand instead of hand-built — without sacrificing syllabus alignment or formatting consistency.",
+      approach: [
+        "Built a prompt pipeline producing fully structured 50-page papers in under 2 clicks, with configurable subject and difficulty.",
+        "Fixed a concurrency bug in topic-tracking writes by replacing a race-prone read-then-write with a SQL Server MERGE upsert.",
+        "Deployed and maintained the system on an Azure free-tier VM, including DB recreation and access-role handoffs for the client.",
+      ],
+      result: "Delivered solo, end-to-end (requirements → build → handoff). In active use generating real assessment papers for a live client in Australia.",
+    },
   },
   {
     id: "02", status: "SHIPPED",
@@ -23,6 +32,15 @@ const projects = [
     tech: ["Python", "Hugging Face", "Groq LLM", "BERT"],
     year: "2026", github: "https://github.com/Pragya3104/EmoWellbeing.git",
     accent: "var(--accent)", glow: "rgba(192,132,252,0.18)",
+    details: {
+      problem: "Most mental-wellness bots respond generically. The goal was responses that actually adapt to a user's detected emotional state, not just their words.",
+      approach: [
+        "Used a distilRoBERTa emotion classifier scoring 5+ categories per message, feeding context into the response prompt.",
+        "Routed generation through Groq-hosted LLaMA 3 70B for low latency — under 300ms across 1,000+ test interactions.",
+        "Documented the architecture and evaluation as a full IEEE-format research paper.",
+      ],
+      result: "A working research prototype backed by a formal paper — evidence of taking an ML idea from notebook to a documented, working system.",
+    },
   },
   {
     id: "03", status: "SHIPPED",
@@ -31,6 +49,15 @@ const projects = [
     tech: ["FastAPI", "Next.js", "K-Means", "Pandas"],
     year: "2025", github: "https://github.com/tarun0714/Study-Track-AI-based-Student-Study-Habit-Recommender---Infosys.git",
     accent: "var(--accent2)", glow: "rgba(34,211,238,0.15)",
+    details: {
+      problem: "Infosys Springboard needed a way to turn raw study-session logs into actionable insight — which students were falling behind, and why.",
+      approach: [
+        "Built a full-stack platform tracking 1,000+ study sessions, with REST APIs for sessions, OTP auth, and admin analytics.",
+        "Ran K-Means clustering (K=3) on 5+ behavioural features to segment students into performance bands.",
+        "Layered a rule-based recommendation engine (10+ rules) on top of the clusters to surface specific, actionable suggestions.",
+      ],
+      result: "Cut manual analysis time by roughly 30% and improved early identification of at-risk students for instructors.",
+    },
   },
   {
     id: "04", status: "SHIPPED",
@@ -39,6 +66,15 @@ const projects = [
     tech: ["IBM watsonx.ai", "LangGraph", "Python"],
     year: "2025", github: "https://github.com/Pragya3104/Travel_ai_agent.git",
     accent: "var(--warm)", glow: "rgba(244,114,182,0.15)",
+    details: {
+      problem: "Single-turn travel bots can't handle the back-and-forth real trip planning needs — changing dates, weather, multi-stop itineraries.",
+      approach: [
+        "Built a stateful multi-turn agent using LangGraph + ReAct architecture for orchestrated, tool-augmented reasoning.",
+        "Integrated multiple external APIs for itinerary generation, destination recommendations, and weather-aware re-planning.",
+        "Tuned decoding parameters on Granite-3-3-8B for consistent, context-aware output across 500+ multi-turn sessions.",
+      ],
+      result: "Measurably improved response relevance on complex, multi-step queries compared to a single-shot baseline.",
+    },
   },
   {
     id: "05", status: "RESEARCH",
@@ -47,6 +83,15 @@ const projects = [
     tech: ["Python", "Pandas", "Matplotlib", "Seaborn"],
     year: "2025", github: "https://github.com/Pragya3104/Exoplanet-Exploratory-Analysis.git",
     accent: "var(--accent)", glow: "rgba(192,132,252,0.18)",
+    details: {
+      problem: "Wanted to practice EDA on a genuinely large, messy real-world dataset rather than a cleaned-up tutorial CSV.",
+      approach: [
+        "Built an EDA pipeline over 10,000+ NASA exoplanet discovery records.",
+        "Produced multi-dimensional plots and habitability-zone mapping to surface patterns across discovery method, era, and planet type.",
+        "Added a time-series view of discovery-rate trends across the mission's history.",
+      ],
+      result: "A self-directed research piece demonstrating comfort with large public scientific datasets, not just framework usage.",
+    },
   },
 ];
 
@@ -161,7 +206,7 @@ function ProjectModal({ project: p, onClose }: { project: Project; onClose: () =
       <div
         onClick={e => e.stopPropagation()}
         style={{
-          width: "min(640px, 100%)", maxHeight: "80vh", overflowY: "auto",
+          width: "min(680px, 100%)", maxHeight: "85vh", overflowY: "auto",
           border: `1px solid ${p.accent}`,
           borderTop: `3px solid ${p.accent}`,
           background: "rgba(4,0,14,0.97)",
@@ -181,36 +226,73 @@ function ProjectModal({ project: p, onClose }: { project: Project; onClose: () =
           <button onClick={onClose} style={{ background: "none", border: "none", color: "var(--muted)", cursor: "none", fontSize: 16, lineHeight: 1 }}>✕</button>
         </div>
 
-        <h2 style={{ fontSize: "clamp(20px,3vw,28px)", fontWeight: 700, color: p.accent, textShadow: `0 0 16px ${p.accent}`, marginBottom: 20, lineHeight: 1.3, letterSpacing: "-0.02em" }}>
+        <h2 style={{ fontSize: "clamp(20px,3vw,28px)", fontWeight: 700, color: p.accent, textShadow: `0 0 16px ${p.accent}`, marginBottom: 24, lineHeight: 1.3, letterSpacing: "-0.02em" }}>
           {p.title}
         </h2>
 
-        <p style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.9, marginBottom: 28 }}>{p.desc}</p>
+        {/* Problem */}
+        <Section label="// PROBLEM" accent={p.accent}>
+          <p style={{ fontSize: 13, color: "var(--muted)", lineHeight: 1.9 }}>{p.details.problem}</p>
+        </Section>
+
+        {/* Approach */}
+        <Section label="// WHAT I BUILT" accent={p.accent}>
+          <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
+            {p.details.approach.map((line, i) => (
+              <li key={i} style={{ display: "flex", gap: 10, fontSize: 13, color: "var(--muted)", lineHeight: 1.9, marginBottom: 10 }}>
+                <span style={{ color: p.accent, flexShrink: 0 }}>▸</span>
+                <span>{line}</span>
+              </li>
+            ))}
+          </ul>
+        </Section>
+
+        {/* Result */}
+        <Section label="// RESULT" accent={p.accent}>
+          <p style={{ fontSize: 13, color: "var(--text)", lineHeight: 1.9 }}>{p.details.result}</p>
+        </Section>
 
         {/* Tech */}
-        <div style={{ marginBottom: 32 }}>
-          <div style={{ fontSize: 9, color: "var(--muted)", letterSpacing: "0.12em", marginBottom: 10 }}>{"// "}TECH STACK</div>
+        <Section label="// TECH STACK" accent={p.accent} noBorder>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
             {p.tech.map(t => (
               <span key={t} style={{ fontSize: 10, color: p.accent, border: `1px solid ${p.accent}40`, padding: "3px 10px", letterSpacing: "0.08em", textTransform: "uppercase" }}>{t}</span>
             ))}
           </div>
-        </div>
+        </Section>
 
         {/* Actions */}
-        <div style={{ display: "flex", gap: 12, borderTop: "1px solid var(--border)", paddingTop: 24 }}>
-          <a href={p.github} target="_blank" rel="noopener noreferrer" style={{
-            padding: "9px 22px", border: `1px solid ${p.accent}`,
-            color: p.accent, textDecoration: "none", fontSize: 11,
-            letterSpacing: "0.08em", transition: "all 0.2s",
-            boxShadow: `0 0 8px ${p.glow}`,
-          }}>[view_on_github ↗]</a>
+        <div style={{ display: "flex", gap: 12, borderTop: "1px solid var(--border)", paddingTop: 24, marginTop: 8 }}>
+          {p.github ? (
+            <a href={p.github} target="_blank" rel="noopener noreferrer" style={{
+              padding: "9px 22px", border: `1px solid ${p.accent}`,
+              color: p.accent, textDecoration: "none", fontSize: 11,
+              letterSpacing: "0.08em", transition: "all 0.2s",
+              boxShadow: `0 0 8px ${p.glow}`,
+            }}>[view_on_github ↗]</a>
+          ) : (
+            <a href="mailto:pragyajha314@gmail.com?subject=Walkthrough%20request%3A%20AI%20Paper%20Generation%20System" style={{
+              padding: "9px 22px", border: `1px solid ${p.accent}`,
+              color: p.accent, textDecoration: "none", fontSize: 11,
+              letterSpacing: "0.08em", transition: "all 0.2s",
+              boxShadow: `0 0 8px ${p.glow}`,
+            }}>[private_client_project — happy to walk through it ↗]</a>
+          )}
         </div>
       </div>
       <style>{`
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slideUp { from { transform: translateY(24px); opacity: 0; } to { transform: none; opacity: 1; } }
       `}</style>
+    </div>
+  );
+}
+
+function Section({ label, accent, children, noBorder }: { label: string; accent: string; children: React.ReactNode; noBorder?: boolean }) {
+  return (
+    <div style={{ marginBottom: noBorder ? 28 : 24, paddingBottom: noBorder ? 0 : 4 }}>
+      <div style={{ fontSize: 9, color: accent, letterSpacing: "0.12em", marginBottom: 10, opacity: 0.85 }}>{label}</div>
+      {children}
     </div>
   );
 }
@@ -269,6 +351,7 @@ function ProjectCard({ project: p, big, wide, onOpen }: { project: Project; big?
         minHeight: big ? 360 : undefined,
         justifyContent: wide ? undefined : "space-between",
         transformStyle: "preserve-3d",
+        cursor: "pointer",
       }}
       onClick={() => onOpen(p)}
       onMouseEnter={() => setHovered(true)}
@@ -319,13 +402,13 @@ function ProjectCard({ project: p, big, wide, onOpen }: { project: Project; big?
             }}>{t}</span>
           ))}
         </div>
-        <a href={p.github} target="_blank" rel="noopener noreferrer" style={{
+        <span style={{
           fontSize: 11, color: hovered ? p.accent : "var(--muted)",
-          textDecoration: "none", letterSpacing: "0.08em",
-          transition: "all 0.2s", whiteSpace: "nowrap",
+          letterSpacing: "0.08em", whiteSpace: "nowrap",
           textShadow: hovered ? `0 0 8px ${p.accent}` : "none",
-        }}>[view_↗]</a>
+        }}>[view_details ↗]</span>
       </div>
     </div>
   );
 }
+  

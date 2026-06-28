@@ -19,7 +19,7 @@ const stats = [
   { num: 3, suffix: "+", label: "Internships", color: "var(--accent)", glow: "rgba(192,132,252,0.45)" },
   { num: 5, suffix: "+", label: "Projects", color: "var(--accent2)", glow: "rgba(34,211,238,0.45)" },
   { num: 5, suffix: "+", label: "Production System", color: "var(--warm)", glow: "rgba(244,114,182,0.45)" },
-  { num: 1, suffix: "×", label: "Freelance Client", color: "var(--accent)", glow: "rgba(192,132,252,0.45)" },
+  { num: 1, suffix: "×", label: "Freelance Project", color: "var(--accent)", glow: "rgba(192,132,252,0.45)" },
 ];
 
 export default function About() {
