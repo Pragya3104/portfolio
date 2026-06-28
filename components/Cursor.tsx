@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 
 const TRAIL = 8;
@@ -28,6 +28,11 @@ export default function Cursor() {
   const ringRef = useRef<HTMLDivElement>(null);
   const trailRefs = useRef<(HTMLDivElement | null)[]>([]);
   const colorRef = useRef("#c084fc");
+  const [isTouch, setIsTouch] = useState(true);
+
+  useEffect(() => {
+    setIsTouch(window.matchMedia("(pointer: coarse)").matches);
+  }, []);
 
   useEffect(() => {
     const onScroll = () => {
@@ -93,6 +98,8 @@ export default function Cursor() {
       gsap.ticker.remove(tick);
     };
   }, []);
+
+  if (isTouch) return null;
 
   return (
     <div style={{ position: "fixed", top: 0, left: 0, zIndex: 9999, pointerEvents: "none" }}>

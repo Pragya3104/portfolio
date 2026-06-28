@@ -261,12 +261,13 @@ export default function Terminal({ onClose }: { onClose: () => void }) {
         position: "fixed", inset: 0, zIndex: 9500,
         background: "rgba(4,0,14,0.85)",
         backdropFilter: "blur(8px)",
-        display: "flex", alignItems: "center", justifyContent: "center",
+        display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column",
         animation: "fadeIn 0.2s ease",
       }}
       onClick={onClose}
     >
       <div
+        className="terminal-window"
         onClick={e => e.stopPropagation()}
         style={{
           width: "min(680px, 94vw)",
@@ -356,6 +357,14 @@ export default function Terminal({ onClose }: { onClose: () => void }) {
         @keyframes fadeIn {
           from { opacity: 0; }
           to   { opacity: 1; }
+        }
+        @media (max-width: 640px) {
+          .terminal-window {
+            width: 100% !important;
+            max-height: 85vh !important;
+            border-radius: 0 !important;
+            align-self: flex-end !important;
+          }
         }
       `}</style>
     </div>

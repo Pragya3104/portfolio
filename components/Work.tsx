@@ -117,17 +117,17 @@ export default function Work() {
           { y: 0, opacity: 1, duration: 0.6 }
         )
         .fromTo(".work-card-main .project-card",
-          { x: -100, opacity: 0, rotation: -3, scale: 0.96 },
+          { x: window.innerWidth < 768 ? -30 : -100, opacity: 0, rotation: window.innerWidth < 768 ? 0 : -3, scale: 0.96 },
           { x: 0, opacity: 1, rotation: 0, scale: 1, duration: 1.1 },
           "-=0.25"
         )
         .fromTo(".work-card-stack .project-card",
-          { x: 100, opacity: 0, rotation: 3, scale: 0.96 },
+          { x: window.innerWidth < 768 ? 30 : 100, opacity: 0, rotation: window.innerWidth < 768 ? 0 : 3, scale: 0.96 },
           { x: 0, opacity: 1, rotation: 0, scale: 1, stagger: 0.15, duration: 0.9 },
           "-=0.75"
         )
         .fromTo(".work-card-wide .project-card",
-          { y: 90, opacity: 0, scale: 0.95 },
+          { y: window.innerWidth < 768 ? 30 : 90, opacity: 0, scale: 0.97 },
           { y: 0, opacity: 1, scale: 1, duration: 1 },
           "-=0.5"
         );
@@ -138,7 +138,7 @@ export default function Work() {
   }, []);
 
   return (
-    <section id="work" ref={sectionRef} style={{ padding: "100px 40px", position: "relative", overflow: "hidden" }}>
+    <section id="work" ref={sectionRef} style={{ padding: "100px 40px", position: "relative", overflow: "clip" }}>
       <div aria-hidden="true" style={{
         position: "absolute", top: -10, right: -15,
         fontSize: "clamp(130px, 21vw, 260px)",
@@ -156,7 +156,7 @@ export default function Work() {
         <span style={{ color: "var(--muted)", fontSize: 10 }}>01</span>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
+      <div className="work-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 2 }}>
         <div className="work-card-main">
           <ProjectCard project={projects[0]} big onOpen={setSelected} />
         </div>
@@ -167,7 +167,7 @@ export default function Work() {
         <div className="work-card-wide" style={{ gridColumn: "1 / -1" }}>
           <ProjectCard project={projects[3]} wide onOpen={setSelected} />
         </div>
-        <div style={{ gridColumn: "1 / -1" }}>
+        <div className="work-card-wide" style={{ gridColumn: "1 / -1" }}>
           <ProjectCard project={projects[4]} wide onOpen={setSelected}/>
         </div>
       </div>
@@ -175,11 +175,22 @@ export default function Work() {
       {selected && <ProjectModal project={selected} onClose={closeModal} />}
 
       <style>{`
-        @media (max-width: 900px) {
-          #work { padding: 80px 20px !important; }
-          #work .work-card-main,
-          #work .work-card-stack,
-          #work .work-card-wide { grid-column: 1 !important; }
+        @media (max-width: 768px) {
+          #work { padding: 80px 20px !important; overflow: visible !important; }
+          .work-grid { grid-template-columns: 1fr !important; }
+          .work-card-main, .work-card-stack, .work-card-wide { grid-column: 1 !important; }
+          .project-card {
+            display: flex !important;
+            flex-direction: column !important;
+            grid-template-columns: unset !important;
+            min-height: unset !important;
+            gap: 16px !important;
+            padding: 20px !important;
+          }
+        }
+        @media (max-width: 640px) {
+          #work { padding: 64px 16px !important; }
+          .project-card { padding: 16px !important; }
         }
       `}</style>
     </section>

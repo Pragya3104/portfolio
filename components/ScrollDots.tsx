@@ -30,13 +30,16 @@ export default function ScrollDots() {
   }, []);
 
   return (
-    <div style={{
+    <div className="scroll-dots-nav" style={{
       position: "fixed", right: 24, top: "50%",
       transform: "translateY(-50%)",
       zIndex: 500,
       display: "flex", flexDirection: "column", gap: 16,
       alignItems: "center",
     }}>
+      <style>{`
+        @media (max-width: 768px) { .scroll-dots-nav { display: none !important; } }
+      `}</style>
       {SECTIONS.map(s => {
         const isActive = active === s.id;
         return (
